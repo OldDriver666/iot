@@ -21,7 +21,6 @@ import org.springframework.core.type.AnnotationMetadata;
 
 /**
  * 动态数据源注册
- * @author CZH
  */
 public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar, EnvironmentAware {
 

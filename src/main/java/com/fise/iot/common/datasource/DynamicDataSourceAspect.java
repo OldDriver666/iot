@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * 切换数据源
- * @author CZH
  */
 @Aspect
 @Component

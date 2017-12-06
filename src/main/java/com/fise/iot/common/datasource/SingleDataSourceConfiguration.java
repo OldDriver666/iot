@@ -11,7 +11,6 @@ package com.fise.iot.common.datasource;
 //
 ///**
 // * 单数据源配置
-// * @author CZH
 // */
 //@Configuration
 //public class SingleDataSourceConfiguration {
