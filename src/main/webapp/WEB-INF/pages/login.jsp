@@ -313,9 +313,9 @@
                 <div class="z-title">
                     <h1>
                         <img src="${ctx}/assets/images/login/log03.png">
-                        <span>权限管理系统</span>
+                        <span>深圳沸石智能物联网云平台</span>
                     </h1>
-                    <p>©CZH</p>
+                    <p>©www.fise.com</p>
                 </div>
 
                 <div class="z-form">

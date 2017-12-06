@@ -11,7 +11,6 @@ import com.fise.iot.service.OperationService;
 
 /**
  * 权限监听器
- * @author CZH
  */
 //@WebListener(与ServletComponentScan注解一起使用;现在用另一种方式,交由WebConfig统一管理配置)
 public class AuthorityListener implements ServletContextListener {

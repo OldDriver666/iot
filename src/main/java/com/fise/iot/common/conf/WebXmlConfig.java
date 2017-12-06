@@ -22,7 +22,6 @@ import com.fise.iot.common.listener.AuthorityListener;
 
 /**
  * web访问配置
- * @author CZH
  */
 @Configuration
 public class WebXmlConfig extends WebMvcConfigurerAdapter {

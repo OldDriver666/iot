@@ -8,7 +8,6 @@ import java.lang.annotation.Target;
 
 /**
  * Service层日志拦截注解
- * @author CZH
  */
 @Target({ElementType.PARAMETER, ElementType.METHOD})  
 @Retention(RetentionPolicy.RUNTIME)  
