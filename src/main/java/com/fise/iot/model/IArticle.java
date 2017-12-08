@@ -7,7 +7,6 @@ import javax.persistence.Table;
 
 /**
  * 文章信息
- * @author CZH
  */
 @Table(name = "i_article")
 public class IArticle {
