@@ -16,7 +16,6 @@ import com.fise.iot.common.utils.IPUtil;
 
 /**
  * 恶意请求拦截器
- * @author CZH
  */
 public class MaliciousRequestInterceptor extends HandlerInterceptorAdapter {
 	@Autowired

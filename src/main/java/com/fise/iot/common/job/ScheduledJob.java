@@ -10,7 +10,6 @@ package com.fise.iot.common.job;
 //
 ///**
 // * 定义一个任务(定时输出)
-// * @author CZH
 // */
 //public class ScheduledJob implements Job {
 //	private SimpleDateFormat dateFormat() {

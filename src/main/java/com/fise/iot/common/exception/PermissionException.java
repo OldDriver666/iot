@@ -2,10 +2,10 @@ package com.fise.iot.common.exception;
 
 /**
  * 权限异常
- * @author CZH
  */
 @SuppressWarnings("serial")
 public class PermissionException extends RuntimeException {
+	
 	private int key;
 	private String message;
 

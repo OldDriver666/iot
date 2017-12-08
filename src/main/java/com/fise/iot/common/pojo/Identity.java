@@ -7,7 +7,6 @@ import com.fise.iot.model.AuthUser;
 
 /**
  * 封装Session
- * @author CZH
  */
 public class Identity {
 	private String sessionId;

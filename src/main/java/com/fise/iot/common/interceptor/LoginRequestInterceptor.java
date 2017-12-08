@@ -23,7 +23,6 @@ import com.fise.iot.model.AuthOperation;
 
 /**
  * 权限拦截器
- * @author czh
  */
 public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
 
@@ -37,7 +36,7 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
 		//权限验证结果
 		boolean isOpera = true;
 		//登录信息验证结果
-		String loginResult = validateLogin(request, response);
+ 		String loginResult = validateLogin(request, response);
 
 		String requestType = request.getHeader("X-Requested-With");
 		String accept = request.getHeader("Accept");

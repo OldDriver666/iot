@@ -2,10 +2,10 @@ package com.fise.iot.common.exception;
 
 /**
  * 请求频繁异常
- * @author CZH
  */
 @SuppressWarnings("serial")
 public class MalciousException extends RuntimeException {
+	
 	private int key;
 	private String message;
 

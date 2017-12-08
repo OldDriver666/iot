@@ -2,10 +2,10 @@ package com.fise.iot.common.exception;
 
 /**
  * Ajax请求异常
- * @author CZH
  */
 @SuppressWarnings("serial")
 public class AjaxPermissionException extends RuntimeException {
+	
 	private int key;
 	private String message;
 

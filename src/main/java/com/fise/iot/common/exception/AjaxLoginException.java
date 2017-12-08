@@ -2,7 +2,6 @@ package com.fise.iot.common.exception;
 
 /**
  * Ajax登录异常
- * @author CZH
  */
 @SuppressWarnings("serial")
 public class AjaxLoginException extends RuntimeException {

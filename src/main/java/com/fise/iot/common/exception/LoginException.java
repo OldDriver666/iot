@@ -2,10 +2,10 @@ package com.fise.iot.common.exception;
 
 /**
  * 登录异常
- * @author CZH
  */
 @SuppressWarnings("serial")
 public class LoginException extends RuntimeException {
+
 	private int key;
 	private String message;
 

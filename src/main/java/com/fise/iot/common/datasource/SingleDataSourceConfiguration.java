@@ -1,4 +1,3 @@
-package com.fise.iot.common.datasource;
 //package com.fise.iot.common.datasource;
 //
 //import javax.sql.DataSource;

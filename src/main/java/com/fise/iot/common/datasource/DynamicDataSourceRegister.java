@@ -72,7 +72,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
 			dataSourceType = (Class<DataSource>) Class.forName(dsType);
 
 			dataSource = DataSourceBuilder.create().driverClassName(driverClassName).url(url)
-					.username(username).password(password).type(dataSourceType).build();;
+					.username(username).password(password).type(dataSourceType).build();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

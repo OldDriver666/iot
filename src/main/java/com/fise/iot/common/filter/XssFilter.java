@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 非法字符过滤器（防SQL注入，防XSS漏洞）
- * @author CZH
  */
 public class XssFilter implements Filter {
 	private static final Logger logger = LoggerFactory.getLogger(XssFilter.class);
@@ -35,7 +34,7 @@ public class XssFilter implements Filter {
 		Enumeration<?> params = req.getParameterNames();
 		String paramName = null;
 		String paramVale = null;
-		while (params.hasMoreElements()) {
+		while (params.hasMoreElements()) { 
 			paramName = (String) params.nextElement();
 			paramVale = xssEncode(req.getParameter(paramName));
 			// 校验是否存在SQL注入信息

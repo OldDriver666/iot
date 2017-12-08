@@ -14,7 +14,6 @@ package com.fise.iot.common.job;
 //
 ///**
 // * 任务调度器
-// * @author CZH
 // */
 //@Component
 //public class JobScheduler {

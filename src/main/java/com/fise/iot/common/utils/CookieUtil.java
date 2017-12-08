@@ -5,9 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * kookie工具类
- * 
- * @author CZH
+ * cookie工具类
  */
 public class CookieUtil {
 	public static void set(String key, String value, HttpServletResponse response) {
@@ -23,7 +21,8 @@ public class CookieUtil {
 		cookie.setPath("/");
 		response.addCookie(cookie);
 	}
-
+    
+	//获取用户的登录信息SESSION_ID
 	public static String get(String key, HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
