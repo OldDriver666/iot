@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: iot
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: ZN-yyrj015
+Built-By: ZN-xwsc012
 Implementation-Vendor-Id: com.fise.iot
-Build-Jdk: 1.8.0_131
+Build-Jdk: 1.8.0_121
 Implementation-URL: http://projects.spring.io/spring-boot/iot/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
