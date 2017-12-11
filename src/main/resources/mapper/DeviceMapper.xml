@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fise.iot.mapper.ITopicMapper">
-	<resultMap id="BaseResultMap" type="com.fise.iot.model.ITopic">
+<mapper namespace="com.fise.iot.mapper.DeviceMapper">
+	<resultMap id="BaseResultMap" type="com.fise.iot.model.Device">
 		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+		<result column="device_name" jdbcType="VARCHAR" property="deviceName" />
 		<result column="product_id" jdbcType="VARCHAR" property="productId" />
-		<result column="topic_url" jdbcType="VARCHAR" property="topicUrl" />
-		<result column="oper_auth" jdbcType="INTEGER" property="operAuth" />
-		<result column="topic_desc" jdbcType="VARCHAR" property="topicDesc" />
+		<result column="device_key" jdbcType="VARCHAR" property="deviceKey" />
+		<result column="status" jdbcType="INTEGER" property="status" />
 		<result column="creator" jdbcType="VARCHAR" property="creator" />
 		<result column="updator" jdbcType="VARCHAR" property="updator" />
 		<result column="create_time" jdbcType="DATE" property="createTime" />

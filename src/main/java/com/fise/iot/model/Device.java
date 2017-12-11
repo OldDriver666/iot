@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class IDevice {
+public class Device {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
