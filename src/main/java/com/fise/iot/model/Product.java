@@ -1,109 +1,152 @@
 package com.fise.iot.model;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Product {
+/**
+ * @author 
+ */
+public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	private String productId;
-	
-	private String productName;
-	
-	private String productKey;
-	
-	private String productDesc;
-	
-	private String creator;
-	
-	private String updator;
-	
-	private Date createTime;
-	
-	private Date updateTime;
+    private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
+    /**
+     * 产品id
+     */
+    private String productId;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    /**
+     * 操作用户
+     */
+    private String productName;
 
-	public String getProductId() {
-		return productId;
-	}
+    /**
+     * 产品key
+     */
+    private String productKey;
 
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
+    /**
+     * 内容
+     */
+    private String productDesc;
 
-	public String getProductName() {
-		return productName;
-	}
+    /**
+     * 产品状态(0 - 不可用 1- 可用 2-删除)
+     */
+    private Integer status;
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+    /**
+     * 创建者
+     */
+    private String creator;
 
-	public String getProductKey() {
-		return productKey;
-	}
+    /**
+     * 修改者
+     */
+    private String updator;
 
-	public void setProductKey(String productKey) {
-		this.productKey = productKey;
-	}
+    /**
+     * 创建时间
+     */
+    private Date createTime;
 
-	public String getProductDesc() {
-		return productDesc;
-	}
+    /**
+     * 修改时间
+     */
+    private Date updateTime;
 
-	public void setProductDesc(String productDesc) {
-		this.productDesc = productDesc;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public String getCreator() {
-		return creator;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setCreator(String creator) {
-		this.creator = creator;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getUpdator() {
-		return updator;
-	}
+    public String getProductId() {
+        return productId;
+    }
 
-	public void setUpdator(String updator) {
-		this.updator = updator;
-	}
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public String getProductName() {
+        return productName;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public String getProductKey() {
+        return productKey;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public void setProductKey(String productKey) {
+        this.productKey = productKey;
+    }
+
+    public String getProductDesc() {
+        return productDesc;
+    }
+
+    public void setProductDesc(String productDesc) {
+        this.productDesc = productDesc;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getUpdator() {
+        return updator;
+    }
+
+    public void setUpdator(String updator) {
+        this.updator = updator;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
 	@Override
 	public String toString() {
-		return "IProduct [id=" + id + ", productId=" + productId + ", productName=" + productName + ", productKey="
-				+ productKey + ", productDesc=" + productDesc + ", creator=" + creator + ", updator=" + updator
-				+ ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+		return "Product [id=" + id + ", productId=" + productId + ", productName=" + productName + ", productKey="
+				+ productKey + ", productDesc=" + productDesc + ", status=" + status + ", creator=" + creator
+				+ ", updator=" + updator + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
 	}
-	
+    
 }
