@@ -4,8 +4,18 @@
   	<div class="col-md-2" style="width: 200px">
 		<input type="text" class="form-control search-query" name="productName" placeholder="产品名称">
 	</div>
-	 <div class="col-md-1" style="width: 105px;">
+	<div class="col-md-2" style="padding-bottom: 0px;width: 200px;">
+		<select class="form-control" name="status" onchange="javascript:formSubmit();">
+			<option value="">==是否可用==</option>
+			<option value="1">可用</option>
+			<option value="0">不可用</option>
+		</select>
+	</div>
+	<div class="col-md-1" style="width: 105px;">
         <button id="searchBtn" class="btn btn-labeled btn-info" onclick="javascript:formSubmit();"><span class="btn-label icon fa fa-search"></span>搜索</button>
+    </div>
+    <div class="col-md-3" style="text-align: left;padding-bottom: unset">
+        <button id="addBtn" class="btn btn-labeled btn-primary" onclick="javascript:showModal('添加产品', 'admin/product/addProductPage');"><span class="btn-label icon fa fa-plus"></span>添加产品</button>
     </div>
   </div>
 </div>

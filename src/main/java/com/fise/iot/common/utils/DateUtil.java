@@ -14,10 +14,7 @@ import java.util.TimeZone;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * 
  * Description:日期时间操作的工具类
- * 
- * @author CZH
  */
 public class DateUtil {
 	/** 日期格式(yyyy-MM-dd) */
@@ -66,6 +63,17 @@ public class DateUtil {
 
 	public static Date getDate() {
 		return Calendar.getInstance().getTime();
+	}
+	
+	/**
+	 * 时间戳字符串返回
+	 * @param timeStamp
+	 * @return
+	 */
+	public static String dateTimeFormat(Long timeStamp){
+		SimpleDateFormat tf = new SimpleDateFormat(yyyy_MM_dd_HH_mm_ss_EN);
+		String date = tf.format(new Date(timeStamp*1000));
+		return date;
 	}
 
 	/**

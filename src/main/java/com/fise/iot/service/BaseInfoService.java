@@ -9,8 +9,10 @@ import com.fise.iot.common.annotation.ServiceLog;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
 import com.fise.iot.common.utils.AppUtil;
+import com.fise.iot.common.utils.DateUtil;
 import com.fise.iot.common.utils.StringUtil;
 import com.fise.iot.mapper.ProductMapper;
+import com.fise.iot.model.IFile;
 import com.fise.iot.model.Product;
 import com.fise.iot.model.ProductExample;
 import com.github.pagehelper.page.PageMethod;
@@ -31,6 +33,9 @@ public class BaseInfoService extends AbstratService<Product> {
 		if(!StringUtil.isEmpty(product.getProductName())){
 			criteria.andProductNameLike("%" + product.getProductName()+ "%");
 		}
+		if(null!=product.getStatus()){
+			criteria.andStatusEqualTo(product.getStatus());
+		}
 		List<Product> list = productMapper.selectByExample(example);
 		return AppUtil.returnPage(list);
 	}
@@ -39,19 +44,30 @@ public class BaseInfoService extends AbstratService<Product> {
 		return productMapper.selectByPrimaryKey(id);
 	}
 
-	@ServiceLog("更新文件")
+	@ServiceLog("更新产品")
 	public AjaxResult updateProduct(Product product) {
 		productMapper.updateByPrimaryKeySelective(product);
 		return AppUtil.returnObj(null);
 	}
 	
-	@ServiceLog("删除文件")
+	@ServiceLog("删除产品")
 	public AjaxResult delProduct(int id) {
 		Product product = queryProductByID(id);
 		if(null != product){
 			product.setStatus(2);
 			productMapper.updateByPrimaryKeySelective(product);
 		}
+		return AppUtil.returnObj(null);
+	}
+	
+	@ServiceLog("新增产品")
+	public AjaxResult addProduct(Product product) {
+		//product.setAddtime(DateUtil.getCurDateTime());
+		product.setCreator("admin");
+		product.setUpdator("admin");
+		product.setCreateTime(DateUtil.getDate());
+		product.setUpdateTime(DateUtil.getDate());
+		productMapper.insert(product);
 		return AppUtil.returnObj(null);
 	}
 

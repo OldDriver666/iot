@@ -55,7 +55,7 @@ public class BaseInfoController {
 	@ControllerLog("修改产品")
 	@RequestMapping("updateProduct")
 	@ResponseBody
-	@Authority(opCode = "040102", opName = "修改文件")
+	@Authority(opCode = "040102", opName = "修改产品")
 	public AjaxResult updateProduct(Product product) {
 		return baseInfoService.updateProduct(product);
 	}
@@ -66,6 +66,20 @@ public class BaseInfoController {
 	@Authority(opCode = "040103", opName = "删除产品")
 	public AjaxResult delProduct(@PathVariable("id") int id) {
 		return baseInfoService.delProduct(id);
+	}
+	
+	@Authority(opCode = "040104", opName = "添加产品页面")
+	@RequestMapping("addProductPage")
+	public String addProductPage(Map<String, Object> map) {
+		return "product/product_add";
+	}
+
+	@ControllerLog("添加文件")
+	@RequestMapping("addProduct")
+	@ResponseBody
+	@Authority(opCode = "040104", opName = "添加产品")
+	public AjaxResult addProduct(Product product) {
+		return baseInfoService.addProduct(product);
 	}
 
 }
