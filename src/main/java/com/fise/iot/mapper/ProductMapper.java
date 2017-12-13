@@ -2,9 +2,6 @@ package com.fise.iot.mapper;
 
 import com.fise.iot.common.dao.MyMapper;
 import com.fise.iot.model.Product;
-import com.fise.iot.model.ProductExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface ProductMapper extends MyMapper<Product>{
 	

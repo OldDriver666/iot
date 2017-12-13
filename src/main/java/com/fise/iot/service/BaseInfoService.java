@@ -12,7 +12,6 @@ import com.fise.iot.common.utils.AppUtil;
 import com.fise.iot.common.utils.DateUtil;
 import com.fise.iot.common.utils.StringUtil;
 import com.fise.iot.mapper.ProductMapper;
-import com.fise.iot.model.IFile;
 import com.fise.iot.model.Product;
 import com.fise.iot.model.ProductExample;
 import com.github.pagehelper.page.PageMethod;
@@ -46,6 +45,7 @@ public class BaseInfoService extends AbstratService<Product> {
 
 	@ServiceLog("更新产品")
 	public AjaxResult updateProduct(Product product) {
+		product.setUpdateTime(DateUtil.getCurDateTime());
 		productMapper.updateByPrimaryKeySelective(product);
 		return AppUtil.returnObj(null);
 	}
@@ -65,8 +65,8 @@ public class BaseInfoService extends AbstratService<Product> {
 		//product.setAddtime(DateUtil.getCurDateTime());
 		product.setCreator("admin");
 		product.setUpdator("admin");
-		product.setCreateTime(DateUtil.getDate());
-		product.setUpdateTime(DateUtil.getDate());
+		product.setCreateTime(DateUtil.getCurDateTime());
+		product.setUpdateTime(DateUtil.getCurDateTime());
 		productMapper.insert(product);
 		return AppUtil.returnObj(null);
 	}

@@ -14,12 +14,11 @@ import com.fise.iot.common.annotation.Authority;
 import com.fise.iot.common.annotation.ControllerLog;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
-import com.fise.iot.model.IFile;
 import com.fise.iot.model.Product;
 import com.fise.iot.service.BaseInfoService;
 
 /**
- *设备基本信息controller
+ *产品基本信息controller
  */
 @Controller
 @RequestMapping("/admin/product/")
@@ -32,7 +31,7 @@ public class BaseInfoController {
 	
 	@Authority(opCode = "0401", opName = "产品基本信息界面")
 	@RequestMapping("baseinfoPage")
-	public String filePage() {
+	public String productPage() {
 		return "product/base_info";
 	}
 	
@@ -49,7 +48,7 @@ public class BaseInfoController {
 	public String updateInfoPage(@PathVariable("id") int id, Map<String, Object> map) {
 		Product product = baseInfoService.queryProductByID(id);
 		map.put("product", product);
-		return "product/info_update";
+		return "product/product_update";
 	}
 
 	@ControllerLog("修改产品")

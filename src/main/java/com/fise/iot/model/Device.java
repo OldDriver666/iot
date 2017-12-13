@@ -1,131 +1,165 @@
 package com.fise.iot.model;
 
-import java.sql.Date;
+import java.io.Serializable;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Device {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	private String deviceId;
-	
-	private String deviceName;
-	
-	private String productId;
-	
-	private String deviceKey;
-	
-	private Integer status;
-	
-	private String creator;
-	
-	private String updator;
-	
-	private Date createTime;
-	
-	private Date updateTime;
-	
-	private Date lastTime;
+/**
+ * @author 
+ */
+public class Device implements Serializable {
 
-	public Integer getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    /**
+     * 设备id
+     */
+    private String deviceId;
 
-	public String getDeviceId() {
-		return deviceId;
-	}
+    /**
+     * 设备名称
+     */
+    private String deviceName;
 
-	public void setDeviceId(String deviceId) {
-		this.deviceId = deviceId;
-	}
+    /**
+     * 产品id
+     */
+    private String productId;
 
-	public String getDeviceName() {
-		return deviceName;
-	}
+    /**
+     * 设备key
+     */
+    private String deviceKey;
 
-	public void setDeviceName(String deviceName) {
-		this.deviceName = deviceName;
-	}
+    /**
+     * 状态(0-离线, 1-在线)
+     */
+    private Integer status;
 
-	public String getProductId() {
-		return productId;
-	}
+    /**
+     * 创建者
+     */
+    private String creator;
 
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
+    /**
+     * 修改者
+     */
+    private String updator;
 
-	public String getDeviceKey() {
-		return deviceKey;
-	}
+    /**
+     * 创建时间
+     */
+    private String createTime;
 
-	public void setDeviceKey(String deviceKey) {
-		this.deviceKey = deviceKey;
-	}
+    /**
+     * 修改时间
+     */
+    private String updateTime;
 
-	public Integer getStatus() {
-		return status;
-	}
+    /**
+     * 最后上线时间
+     */
+    private String lastTime;
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public String getCreator() {
-		return creator;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setCreator(String creator) {
-		this.creator = creator;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getUpdator() {
-		return updator;
-	}
+    public String getDeviceId() {
+        return deviceId;
+    }
 
-	public void setUpdator(String updator) {
-		this.updator = updator;
-	}
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
 
-	public Date getCreateTime() {
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getDeviceKey() {
+        return deviceKey;
+    }
+
+    public void setDeviceKey(String deviceKey) {
+        this.deviceKey = deviceKey;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getUpdator() {
+        return updator;
+    }
+
+    public void setUpdator(String updator) {
+        this.updator = updator;
+    }
+
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 
-	public Date getUpdateTime() {
+	public String getUpdateTime() {
 		return updateTime;
 	}
 
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
 
-	public Date getLastTime() {
+	public String getLastTime() {
 		return lastTime;
 	}
 
-	public void setLastTime(Date lastTime) {
+	public void setLastTime(String lastTime) {
 		this.lastTime = lastTime;
 	}
 
 	@Override
 	public String toString() {
-		return "IDevice [id=" + id + ", deviceId=" + deviceId + ", deviceName=" + deviceName + ", productId="
-				+ productId + ", deviceKey=" + deviceKey + ", status=" + status + ", creator=" + creator + ", updator="
-				+ updator + ", createTime=" + createTime + ", updateTime=" + updateTime + ", lastTime=" + lastTime
-				+ "]";
+		return "Device [id=" + id + ", deviceId=" + deviceId + ", deviceName=" + deviceName + ", productId=" + productId
+				+ ", deviceKey=" + deviceKey + ", status=" + status + ", creator=" + creator + ", updator=" + updator
+				+ ", createTime=" + createTime + ", updateTime=" + updateTime + ", lastTime=" + lastTime + "]";
 	}
-
+	
 }
