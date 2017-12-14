@@ -1,50 +1,42 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<form id="submitForm" class="form-horizontal" enctype="multipart/form-data" method="post">
-	<input name="id" value="${device.id}" type="text" hidden="hidden">
-	
-	<div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right" for="deviceId"><font color="red">*</font>设备ID</label>
-		<div class="col-sm-8">
-			<input type="text" id="deviceId" name="deviceId" value="${device.deviceId}" class="form-control" />
-		</div>
-	</div> 
-	
-	<div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right" for="deviceName"><font color="red">*</font>设备名称</label>
-		<div class="col-sm-5">
-			<input type="text" id="deviceName" name="deviceName" value="${device.deviceName}" class="form-control" />
-		    <span style="color: black;">支持中文、英文字母、数字和下划线，长度限制4~30，中文算2位</span>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right" for="deviceKey">设备Key</label>
-		<div class="col-sm-8">
-			<input type="text" id="deviceKey" name="deviceKey" value="${device.deviceKey}" class="form-control" readonly/>
-		</div>
-	</div>
-	
-	 <div class="form-group">
-        <label class="col-sm-3 control-label" for="status">设备状态：</label>
-        <div class="col-sm-8">
-            <div class="radio">
-				<label style="display: inline-block; width: 50px;">
-					<input value="1" name="status" type="radio" class="ace" <c:if test="${1 == device.status}">checked</c:if> />在线     
-				</label>
-				<label style="display: inline-block; width: 50px;">
-					<input value="0" name="status" type="radio" class="ace" <c:if test="${0 == device.status}">checked</c:if> />离线          
-				</label>
-			</div>
-        </div>
-    </div>
-
-</form>
-
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<div class="page-header" style="padding:10px 20px;margin:-18px 0px 0px">
+  <input type="hidden" value="${device.deviceId}" id="deviceId"/>
+  <div id="searchForm">
+	  <div class="col-md-3" style="text-align: left;padding-bottom: unset">
+        <button id="backBtn" class="btn btn-labeled btn-primary" onclick="javascript:goPage('admin/device/deviceinfoPage');">返回</button>
+     </div>
+  </div>
+</div>
+<div class="openAppGrid">
+	<div id="openAppGrid"></div>
+</div>
 <script type="text/javascript">
-	submit = function(){
-		frmValidate();
-		var data = $("#submitForm").serialize();
-		ajaxRequest("admin/product/updateProduct", data);
-	}
+    $(function (){
+        $("#openAppGrid").sgrid({
+            columns:[
+                {field:"topicUrl", text:"设备的Topic"},
+                {field:"operAuth", text:"设备具有的权限",formatter:function(index, content, data){
+                	if(content == 1)
+                	return "<font color='blue'>订阅</font>";
+                	if(content == 2)
+                    return "<font color='blue'>发布</font>";
+                	if(content == 3)
+                    return "<font color='blue'>订阅和发布</font>";
+                }},
+                {field:"messageNum", text:"发布消息数"},
+                {field:"deviceId", text:"操作", style:"text-align:center", formatter:function(index, content, data){
+                	var publishUrl = "admin/device/topicList/" + content;
+                    return "<a href='javascript:showModal(\"发布消息\", \""+publishUrl+"\");' class='btn btn-xs btn-warning add-tooltip'><i class='fa fa-pencil'>发布消息</i></a>";
+                }}
+            ],	
+            cls: "",
+            url: _urlPath + "admin/device/topicListPage/${device[0].deviceId}",
+            sort:"id",
+            order:"desc",
+            pagination:true,
+            onLoad:function(){
+                $(".add-tooltip").tooltip();
+            }
+        });
+    });
 </script>

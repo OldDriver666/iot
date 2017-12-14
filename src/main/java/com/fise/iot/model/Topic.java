@@ -30,6 +30,11 @@ public class Topic implements Serializable {
      * 操作权限(1-订阅,2-发布,3-订阅和发布)
      */
     private Integer operAuth;
+    
+    /**
+     * 描述
+     */
+    private Integer messageNum;
 
     /**
      * 描述
@@ -49,12 +54,12 @@ public class Topic implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private String createTime;
 
     /**
      * 修改时间
      */
-    private Date updateTime;
+    private String updateTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -89,8 +94,16 @@ public class Topic implements Serializable {
     public void setOperAuth(Integer operAuth) {
         this.operAuth = operAuth;
     }
+    
+    public Integer getMessageNum() {
+		return messageNum;
+	}
 
-    public String getTopicDesc() {
+	public void setMessageNum(Integer messageNum) {
+		this.messageNum = messageNum;
+	}
+
+	public String getTopicDesc() {
         return topicDesc;
     }
 
@@ -114,26 +127,27 @@ public class Topic implements Serializable {
         this.updator = updator;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public String getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+	public String getUpdateTime() {
+		return updateTime;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
 
 	@Override
 	public String toString() {
 		return "Topic [id=" + id + ", productId=" + productId + ", topicUrl=" + topicUrl + ", operAuth=" + operAuth
-				+ ", topicDesc=" + topicDesc + ", creator=" + creator + ", updator=" + updator + ", createTime="
-				+ createTime + ", updateTime=" + updateTime + "]";
+				+ ", messageNum=" + messageNum + ", topicDesc=" + topicDesc + ", creator=" + creator + ", updator="
+				+ updator + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
 	}
+
 }

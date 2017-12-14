@@ -58,7 +58,7 @@
 		                <a tabindex="-1" href="javascript:goPage('admin/device/deviceinfoPage')"><span class="mm-text">设备管理</span></a>
 		            </li>
 		            <li opCode="0403">
-		                <a tabindex="-1" href="javascript:goPage('admin/tech/articlePage')"><span class="mm-text">消息通信</span></a>
+		                <a tabindex="-1" href="javascript:goPage('admin/message/messageinfoPage')"><span class="mm-text">消息通信</span></a>
 		            </li>
 		            <li opCode="0404">
 		                <a tabindex="-1" href="javascript:goPage('admin/tech/articlePage')"><span class="mm-text">服务端订阅</span></a>

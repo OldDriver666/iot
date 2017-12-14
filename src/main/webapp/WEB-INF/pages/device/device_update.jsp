@@ -14,7 +14,7 @@
 		<label class="col-sm-3 control-label no-padding-right" for="deviceName"><font color="red">*</font>设备名称</label>
 		<div class="col-sm-5">
 			<input type="text" id="deviceName" name="deviceName" value="${device.deviceName}" class="form-control" />
-		    <span style="color: black;">支持中文、英文字母、数字和下划线，长度限制4~30，中文算2位</span>
+		    <span style="color: black; font-size:12px">支持中文、英文字母、数字和下划线，长度限制4~30，中文算2位</span>
 		</div>
 	</div>
 

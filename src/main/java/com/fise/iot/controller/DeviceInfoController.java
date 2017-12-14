@@ -15,7 +15,9 @@ import com.fise.iot.common.annotation.ControllerLog;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
 import com.fise.iot.model.Device;
+import com.fise.iot.model.Topic;
 import com.fise.iot.service.DeviceInfoService;
+import com.fise.iot.service.TopicService;
 
 /**
  *设备基本信息controller
@@ -28,6 +30,9 @@ public class DeviceInfoController {
 	
 	@Autowired
 	private DeviceInfoService deviceService;
+	
+	@Autowired
+	private TopicService topicService;
 	
 	@Authority(opCode = "0402", opName = "设备基本信息界面")
 	@RequestMapping("deviceinfoPage")
@@ -57,6 +62,23 @@ public class DeviceInfoController {
 	@Authority(opCode = "040201", opName = "修改设备")
 	public AjaxResult updateDevice(Device device) {
 		return deviceService.updateDevice(device);
+	}
+	
+//	@Authority(opCode = "040202", opName = "Topic列表页面")
+//	@RequestMapping("topicListPage/")
+//	public String topicListPage(@PathVariable("id") int id, Map<String, Object> map) {
+//		List<Topic> topic = topicService.queryTopicByDeviceId(id);
+//		map.put("topic", topic);
+//		return "device/topic_list";
+//	}
+
+	@ControllerLog("Topic列表")
+	@RequestMapping("topicList")
+	@ResponseBody
+	@Authority(opCode = "040202", opName = "Topic列表")
+	public AjaxResult topicList(Topic topic) {
+		return null;
+		//return deviceService.updateDevice(device);
 	}
 	
 	@ControllerLog("删除设备")

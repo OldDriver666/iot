@@ -384,7 +384,67 @@ public class TopicExample {
             addCriterion("oper_auth not between", value1, value2, "operAuth");
             return (Criteria) this;
         }
+        
+        public Criteria andMessageNumIsNull() {
+            addCriterion("message_num is null");
+            return (Criteria) this;
+        }
 
+        public Criteria andMessageNumNotNull() {
+            addCriterion("message_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNumEqualTo(Integer value) {
+            addCriterion("message_num =", value, "messageNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNumNotEqualTo(Integer value) {
+            addCriterion("message_num <>", value, "messageNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNumGreaterThan(Integer value) {
+            addCriterion("message_num >", value, "messageNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("message_num >=", value, "messageNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNumLessThan(Integer value) {
+            addCriterion("message_num <", value, "messageNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNumLessThanOrEqualTo(Integer value) {
+            addCriterion("message_num <=", value, "messageNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNumIn(List<Integer> values) {
+            addCriterion("message_num in", values, "messageNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNumNotIn(List<Integer> values) {
+            addCriterion("message_num not in", values, "messageNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNumBetween(Integer value1, Integer value2) {
+            addCriterion("message_num between", value1, value2, "messageNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("message_num not between", value1, value2, "messageNum");
+            return (Criteria) this;
+        }
+        
         public Criteria andTopicDescIsNull() {
             addCriterion("topic_desc is null");
             return (Criteria) this;

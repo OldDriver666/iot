@@ -40,12 +40,12 @@
                 {field:"updateTime", text:"修改时间"},
                 {field:"lastTime", text:"最后上线时间"},
                 {field:"id", text:"操作", style:"text-align:center", formatter:function(index, content, data){
-                	var topicUrl = "admin/device/topicPage/" + content;
+                	var topicUrl = "admin/device/topicListPage/" + content;
                 	var editUrl = "admin/device/updateDevicePage/" + content;
                     var delUrl = "admin/device/delDevice/" + content;
-                    return "<a href='javascript:showModal(\"Topic列表\", \""+editUrl+"\");' class='btn btn-xs btn-success add-tooltip'><i class='fa fa-th-list'>Topic列表</i></a>"
-                        +"<a href='javascript:showModal(\"修改设备信息\", \""+editUrl+"\");' class='btn btn-xs btn-warning add-tooltip'><i class='fa fa-pencil'>修改</i></a>"
-                        + "&nbsp;<a href='javascript:showCfm(\"确定删除该记录\", \""+delUrl+"\");' class='btn btn-xs btn-danger add-tooltip'><i class='fa fa-times'>删除</i></a>";
+                    return "<a href='javascript:goPage(\""+topicUrl+"\");' class='btn btn-xs btn-info'><i class='ace-icon fa fa-th-list'>Topic列表</i></a>"
+                        +"&nbsp;<a href='javascript:showModal(\"修改设备信息\", \""+editUrl+"\");' class='btn btn-xs btn-warning add-tooltip'><i class='fa fa-pencil'>修改</i></a>"
+                        +"&nbsp;<a href='javascript:showCfm(\"确定删除该记录\", \""+delUrl+"\");' class='btn btn-xs btn-danger add-tooltip'><i class='fa fa-times'>删除</i></a>";
                 }}
             ],	
             cls: "",
