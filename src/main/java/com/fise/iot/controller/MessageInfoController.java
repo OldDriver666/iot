@@ -2,6 +2,8 @@ package com.fise.iot.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,7 @@ public class MessageInfoController {
 	}
 	
 	@Authority(opCode = "040302", opName = "更新消息页面")
-	@RequestMapping("updateMessagePage/{id}/{productId}")
+	@RequestMapping("updateMessagePage/{id}")
 	public String updateMessagePage(@PathVariable("id") int id, Map<String, Object> map) {
 		//根据productId获取productKey
 		Topic topic = messageService.queryMessageByID(id);
@@ -60,7 +62,11 @@ public class MessageInfoController {
 	@RequestMapping("updateMessage")
 	@ResponseBody
 	@Authority(opCode = "040302", opName = "修改消息")
-	public AjaxResult updateMessage(Topic topic) {
+	public AjaxResult updateMessage(Topic topic,HttpServletRequest request) {
+		String prefix=request.getParameter("prefix");
+		String suffix=request.getParameter("suffix");
+		String topicUrl=prefix+suffix;
+		topic.setTopicUrl(topicUrl);
 		return messageService.updateMessage(topic);
 	}
 	

@@ -32,7 +32,7 @@
                 }},
                 {field:"topicDesc", text:"描述"},
                 {field:"id", text:"操作", style:"text-align:center", formatter:function(index, content, data){
-                    var editUrl = "admin/message/updateMessagePage/" +content+"/"+data.productId;
+                    var editUrl = "admin/message/updateMessagePage/" +content;
                     var delUrl = "admin/message/delMessage/" + content;
                     return "<a href='javascript:showModal(\"编辑Topic类\", \""+editUrl+"\");' class='btn btn-xs btn-warning add-tooltip'><i class='fa fa-pencil'>编辑</i></a>"
                         + "&nbsp;<a href='javascript:showCfm(\"确定删除该记录\", \""+delUrl+"\");' class='btn btn-xs btn-danger add-tooltip'><i class='fa fa-times'>删除</i></a>";
