@@ -6,7 +6,8 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="topicUrl"><font color="red">*</font>Topic类：</label>
 		<div class="col-sm-5">
-			<input type="text" id="topicUrl" name="topicUrl" value="${topic.topicUrl}" class="form-control" />
+			<input type="text" style="display: none;" id="prefix" name="prefix" value="${prefix}" class="form-control" readyonly/>
+			<input type="text" id="suffix" name="suffix" value="${suffix}" class="form-control" />
 		</div>
 	</div>
 	

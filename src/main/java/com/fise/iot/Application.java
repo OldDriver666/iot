@@ -15,7 +15,7 @@ import com.fise.iot.common.datasource.DynamicDataSourceRegister;
 /**
  * springboot启动器
  */
-@Controller
+@Controller 
 // 开启缓存
 @EnableCaching
 @MapperScan(basePackages = "com.fise.*.mapper")

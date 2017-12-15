@@ -14,7 +14,6 @@ import com.fise.iot.common.annotation.Authority;
 import com.fise.iot.common.annotation.ControllerLog;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
-import com.fise.iot.model.Product;
 import com.fise.iot.model.Topic;
 import com.fise.iot.service.MessageInfoService;
 
@@ -42,10 +41,18 @@ public class MessageInfoController {
 	}
 	
 	@Authority(opCode = "040302", opName = "更新消息页面")
-	@RequestMapping("updateMessagePage/{id}")
+	@RequestMapping("updateMessagePage/{id}/{productId}")
 	public String updateMessagePage(@PathVariable("id") int id, Map<String, Object> map) {
+		//根据productId获取productKey
 		Topic topic = messageService.queryMessageByID(id);
+		String topicUrl=topic.getTopicUrl();
+		
+		String prefix=topicUrl.substring(0,topicUrl.lastIndexOf("}")+2);
+		String suffix=topicUrl.substring(topicUrl.lastIndexOf("}")+2, topicUrl.length());
+		
 		map.put("topic", topic);
+		map.put("prefix", prefix);
+		map.put("suffix", suffix);
 		return "message/message_update";
 	}
 
