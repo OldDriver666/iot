@@ -22,9 +22,9 @@ import com.fise.iot.service.BaseInfoService;
  */
 @Controller
 @RequestMapping("/admin/product/")
-public class BaseInfoController {
+public class ProductInfoController {
 	/**日志*/
-	public static Logger logger = LoggerFactory.getLogger(BaseInfoController.class);
+	public static Logger logger = LoggerFactory.getLogger(ProductInfoController.class);
 	
 	@Autowired
 	private BaseInfoService baseInfoService;
