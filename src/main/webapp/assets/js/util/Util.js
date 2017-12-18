@@ -72,23 +72,21 @@ function ajaxRequest(url, data){
     });
 }
 
-//表格ajax请求
-function ajaxGrid(url, data){
+function ajaxRequest(url, data){
 	$.ajax({
-		url: _urlPath + url,
-		data: data,
-		type: "post",
-		dataType:"json",
-		success: function (req){
-			if (req.retcode == 1) {
-				$("#openAppGrid").sgrid("refresh");
-				//$.Suc(req.retmsg);
-				$.Mod.Close(req.retmsg);
-			} else {
-				$.Err(req.retmsg);
-			}
-		}
-	});
+        url: _urlPath + url,
+        data: data,
+        type: "post",
+        dataType:"json",
+        success: function (req){
+            if (req.retcode == 1) {
+                $("#openAppGrid").sgrid("refresh");
+                $.Mod.Close(req.retmsg);
+            } else {
+                modalErr(req.retmsg);
+            }
+        }
+    });
 }
 
 //表格ajax请求

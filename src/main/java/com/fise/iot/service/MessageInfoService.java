@@ -76,5 +76,9 @@ public class MessageInfoService extends AbstratService<Topic>{
 		return AppUtil.returnObj(null);
 	}
 	
+	public AjaxResult addMessage(Topic topic) {
+	     topicMapper.insert(topic);
+        return AppUtil.returnObj(null);
+    }
 	
 }
