@@ -1,5 +1,6 @@
 package com.fise.iot.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,9 @@ import com.fise.iot.common.annotation.Authority;
 import com.fise.iot.common.annotation.ControllerLog;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
+import com.fise.iot.model.Product;
 import com.fise.iot.model.Topic;
+import com.fise.iot.service.BaseInfoService;
 import com.fise.iot.service.MessageInfoService;
 
 @Controller
@@ -27,6 +30,9 @@ public class MessageInfoController {
 	
 	@Autowired
 	private MessageInfoService messageService;
+	
+	@Autowired
+    private BaseInfoService baseInfoService;
 	
 	@Authority(opCode = "0403", opName = "查询消息通信界面")
 	@RequestMapping("messageinfoPage")
@@ -77,5 +83,13 @@ public class MessageInfoController {
 	public AjaxResult delMessage(@PathVariable("id") int id) {
 		return messageService.delMessage(id);
 	}
+	
+	@Authority(opCode = "040304", opName = "添加产品页面")
+    @RequestMapping("addMessagePage")
+    public String addMessagePage(Map<String, Object> map) {
+        List<Product> productlist = baseInfoService.queryAll();
+        map.put("productlist", productlist);
+        return "message/message_add";
+    }
 	
 }
