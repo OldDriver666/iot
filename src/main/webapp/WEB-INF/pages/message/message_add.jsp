@@ -1,22 +1,22 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <form id="submitForm" class="form-horizontal">
-	  <div class="form-group" id="select">
+	   <div class="form-group" >
         <label class="col-sm-3 control-label" for="productId"><font color="red">*</font>ProductId：</label>
         <div class="col-sm-8">
-            <select class="form-control" id="productId" name="productId" onchange="func()" style="display: inline-block;width: 40%">
-            	<option>==操作权限==</option>
+            <select class="form-control" id="productId" name="productId" onchange="func()" style="display: inline-block;width: 50%">
+            	<option>==productId==</option>
             	<c:forEach items="${productlist}" var="productlist">
 					<option value="${productlist.productKey}">${productlist.productId}</option>
 				</c:forEach>>
             </select>
-            <input type="text" class="form-control" id="productKey" disabled="disabled" style="display: inline-block;width: 40%;"/>
+            <input type="text" class="form-control" id="productKey" name="productKey" style="display: inline-block;width: 40%" readonly/>
         </div>
-        </div> 	
+       </div> 
 	  <div class="form-group">
         <label class="col-sm-3 control-label" for="productId"><font color="red">*</font>Topic后缀： </label>
         <div class="col-sm-5">
-            <input class="form-control" type="text" id="productId" name="productId" placeholder=""/>
+            <input class="form-control" type="text" id="topic_suffix" name="topic_suffix" placeholder=""/>
             <div id="validation-productId" class="validate-error help-block"></div>
         </div>
     </div>
@@ -54,12 +54,13 @@
 	 submit = function(){
 		frmValidate();
 	    var data = $("#submitForm").serialize();
-		ajaxRequest("admin/product/addProduct", data);
+		ajaxRequest("admin/message/addTopic", data);
 	}
 	 function func() {
 		var val = $("#productId option:selected").val();
-		if(null != val){
+		if(null != val | "==productId=="==val){
 			$("#productKey").val(val);
+			$("#productId option:selected").attr("value",$("#productId option:selected").text());
 		}
 	}
 </script>

@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,6 +21,7 @@ import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
 import com.fise.iot.model.Product;
 import com.fise.iot.model.Topic;
+import com.fise.iot.model.TopicSave;
 import com.fise.iot.service.BaseInfoService;
 import com.fise.iot.service.MessageInfoService;
 
@@ -84,12 +87,23 @@ public class MessageInfoController {
 		return messageService.delMessage(id);
 	}
 	
-	@Authority(opCode = "040304", opName = "添加产品页面")
+	@Authority(opCode = "040304", opName = "添加topic页面")
     @RequestMapping("addMessagePage")
     public String addMessagePage(Map<String, Object> map) {
         List<Product> productlist = baseInfoService.queryAll();
         map.put("productlist", productlist);
         return "message/message_add";
     }
+	
+	@Authority(opCode = "040305", opName = "保存topic")
+	@RequestMapping("addTopic")
+	public AjaxResult addTopic(TopicSave save){
+	    Topic topic = new Topic();
+	    topic.setProductId(save.getProductId());
+	    topic.setTopicUrl("/"+save.getProductKey()+"/${deviceName}/"+save.getTopic_suffix());
+	    topic.setOperAuth(save.getOper_auth());
+	    
+	    return  messageService.save(topic);
+	}
 	
 }
