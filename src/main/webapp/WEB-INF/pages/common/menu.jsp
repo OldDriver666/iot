@@ -64,7 +64,7 @@
 		                <a tabindex="-1" href="javascript:goPage('admin/tech/articlePage')"><span class="mm-text">服务端订阅</span></a>
 		            </li>
 		            <li opCode="0405">
-		                <a tabindex="-1" href="javascript:goPage('admin/tech/articlePage')"><span class="mm-text">日志服务</span></a>
+		                <a tabindex="-1" href="javascript:goPage('admin/log/deviceLogPage')"><span class="mm-text">日志服务</span></a>
 		            </li>
 		        </ul>
 		    </li>
