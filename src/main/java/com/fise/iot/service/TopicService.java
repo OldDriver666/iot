@@ -1,15 +1,13 @@
 package com.fise.iot.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fise.iot.mapper.TopicMapper;
+import com.fise.iot.model.MessagePublish;
 import com.fise.iot.model.Topic;
 import com.fise.iot.model.TopicExample;
 
@@ -40,12 +38,17 @@ public class TopicService extends AbstratService<Topic> {
 		     String url=topic.getTopicUrl().trim();
 		     StringBuffer buff=new StringBuffer(url);
 		     buff.replace(url.indexOf("$"), url.lastIndexOf("}")+1, deviceName);
+		     top.setId(topic.getId());
 		     top.setTopicUrl(buff.toString());
 		     top.setOperAuth(topic.getOperAuth());
 		     top.setMessageNum( topic.getMessageNum());
 		     topicList.add(top);
 		}
-		
 		return topicList;
 	}
+	
+	public void publishMessage(MessagePublish message){
+		
+		
+		}
 }

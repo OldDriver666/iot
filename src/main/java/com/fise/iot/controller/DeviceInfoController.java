@@ -3,6 +3,8 @@ package com.fise.iot.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import com.fise.iot.common.annotation.ControllerLog;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
 import com.fise.iot.model.Device;
+import com.fise.iot.model.MessagePublish;
 import com.fise.iot.model.Topic;
 import com.fise.iot.service.DeviceInfoService;
 import com.fise.iot.service.TopicService;
@@ -88,15 +91,6 @@ public class DeviceInfoController {
 		
 	}
 
-	@ControllerLog("Topic列表")
-	@RequestMapping("topicList")
-	@ResponseBody
-	@Authority(opCode = "040202", opName = "Topic列表")
-	public AjaxResult topicList(Topic topic) {
-		return null;
-		// return deviceService.updateDevice(device);
-	}
-
 	@ControllerLog("删除设备")
 	@RequestMapping("delDevice/{id}")
 	@ResponseBody
@@ -117,5 +111,29 @@ public class DeviceInfoController {
 	@Authority(opCode = "040204", opName = "添加设备")
 	public AjaxResult addDevice(Device device) {
 		return deviceService.addDevice(device);
+	}
+	
+	/**
+	 * 传入的是topic的id
+	 */
+	@Authority(opCode = "040205", opName = "发布消息页面")
+	@RequestMapping("devicePublishPage/{id}")
+	public String devicePublishPage(@PathVariable("id") int id,HttpServletRequest request,Map<String, Object> map) {
+		//根据topicId查出对应得topicUrl
+		Topic topic=topicService.queryTopicByID(id);
+		String topicUrl=topic.getTopicUrl();
+//		String topicUrl=request.getParameter("topicUrl");
+		map.put("topicUrl", topicUrl);
+		return "device/device_publish";
+	}
+	
+	//需要知道，哪个设备的哪个Topic被操作了。
+	@ControllerLog("发布消息")
+	@RequestMapping("devicePublish")
+	@ResponseBody
+	@Authority(opCode = "040205", opName = "发布消息")
+	public AjaxResult devicePublish(MessagePublish message) {
+		topicService.publishMessage(message);
+		return null;
 	}
 }
