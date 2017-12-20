@@ -9,20 +9,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fise.iot.common.Constant;
 import com.fise.iot.common.annotation.Authority;
 import com.fise.iot.common.annotation.ControllerLog;
+import com.fise.iot.common.mqtt.MQTTPublish;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
+import com.fise.iot.model.DeviceLog;
+import com.fise.iot.model.MQTTDto;
 import com.fise.iot.model.Product;
 import com.fise.iot.model.Topic;
 import com.fise.iot.model.TopicSave;
 import com.fise.iot.service.BaseInfoService;
+import com.fise.iot.service.DeviceLogService;
 import com.fise.iot.service.MessageInfoService;
 
 @Controller
@@ -30,6 +33,12 @@ import com.fise.iot.service.MessageInfoService;
 public class MessageInfoController {
 	/**日志*/
 	public static Logger logger = LoggerFactory.getLogger(MessageInfoController.class);
+	
+	@Autowired
+	MQTTPublish mqttPublish;
+	
+	@Autowired
+	DeviceLogService deviceLogService;
 	
 	@Autowired
 	private MessageInfoService messageService;
@@ -105,5 +114,30 @@ public class MessageInfoController {
 	    
 	    return  messageService.save(topic);
 	}
+	
+	@ControllerLog("发布消息")
+	@Authority(opCode = "040306", opName = "发布消息")
+	@RequestMapping("publishMessage")
+	public String publishMsg(MQTTDto mqtt){
+	    String topicUrl = mqtt.getTopicUrl();
+	    String content = mqtt.getContent();
+	    Integer qos = mqtt.getQos();
+	    try {
+	    	//发送消息
+	    	mqttPublish.publishMessage(topicUrl, content, qos);
+	    	//保存消息日志
+	    	DeviceLog deviceLog = new DeviceLog();
+	    	deviceLog.setProductId(mqtt.getProductId());
+	    	deviceLog.setDeviceName(mqtt.getDeviceName());
+	    	deviceLog.setDetail(content);
+	    	deviceLog.setType(Constant.TOPIC_TYPE_UP);
+	    	deviceLogService.save(deviceLog);
+	    	
+		} catch (Exception e) {
+			return "failed";
+		}
+	    return "success";
+	}
+	
 	
 }
