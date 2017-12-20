@@ -1,28 +1,35 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <div class="page-header" style="padding:10px 20px;margin:-18px 0px 0px">
-   <div id="titleForm">
-	  <div class="col-md-3" style="text-align: left;padding-bottom: unset">
-        <button id="backBtn" class="btn btn-labeled btn-primary">日志服务</button>
-        <div align="left"  style="width: 1800px; height:20px">
-        
-           <tr align="right" style="width: 180px; height: 80px">
-              
-            <td class="btn btn-labeled btn-primary" style="text-align:left;">
-              <a href="pwd_modify.jsp">设备行为分析</a>
-            </td>
-            
-            <td class="btn btn-labeled btn-primary" style="text-align:center;">
-             <a href="pwd_modify.jsp">上行消息分析</a>
-            </td>
-            
-            <td class="btn btn-labeled btn-primary" style="text-align:right;">
-                <a href="pwd_modify.jsp">下行消息分析</a>
-            </td>
-    </tr>
-   </div>
- </div>
-</div>
-
+  <div id="searchForm">
+  	<div class="col-md-2" style="width: 200px">
+		<input type="text" class="form-control search-query" name="deviceName" placeholder="设备名称">
+	</div>
+	<div class="col-md-2" style="width: 200px">
+		<input type="text" class="form-control search-query" name="messageId" placeholder="messageId">
+	</div>
+	
+	<div class="col-md-2" style="padding-bottom: 0px;width: 200px;">
+		<select class="form-control" name="type" onchange="javascript:formSubmit();">
+			<option value="">==消息类型==</option>
+			<option value="1">上行</option>
+			<option value="2">下行</option>
+		</select>
+	</div>
+	
+	<div class="col-md-2" style="padding-bottom: 0px;width: 200px;">
+		<select class="form-control" name="time" onchange="javascript:formSubmit();">
+			<option value="">==创建时间==</option>
+			<option value="0">一天内</option>
+			<option value="1">一个星期内</option>
+			<option value="2">一个月内</option>
+		</select>
+	</div>
+	
+	<div class="col-md-1" style="width: 105px;">
+        <button id="searchBtn" class="btn btn-labeled btn-info" onclick="javascript:formSubmit();"><span class="btn-label icon fa fa-search"></span>搜索</button>
+    </div>
+    
+  </div>
 </div>
 <div class="openAppGrid">
 	<div id="openAppGrid"></div>
@@ -31,27 +38,18 @@
     $(function (){
         $("#openAppGrid").sgrid({
             columns:[
-                {field:"id",text:"文件ID"},
-                {field:"username", text:"操作人"},
-                {field:"type", text:"日志类型", formatter:function(index, content, data){
-                	return 1 == content ? "<font color='red'>异常日志</font>" : "<font color='blue'>操作日志</font>";
+                {field:"productId",text:"产品ID"},
+                {field:"deviceName", text:"设备名称"},
+                {field:"messageId", text:"messageId"},
+                {field:"type", text:"消息类型",formatter:function(index, content, data){
+                    return content == 1 ? "<font color='blue'>上行</font>" : "<font color='red'>下行</font>";
                 }},
-                {field:"url", text:"请求地址"},
-                {field:"method", text:"方法"},
-                {field:"params", text:"请求参数",limit:15,formatter:function(index, content, data){
-                	content = content.replace(/<(?:.|\s)*?>/g,"");
-                	if(content.length > 30){
-                		content = content.substr(0, 30) + "...";
-                	}
-                	return content;
-                }},
-                {field:"requestip", text:"访问IP"},
-                {field:"description", text:"操作描述"},
-                {field:"detail", text:"异常详情"},
-                {field:"operDate", text:"操作日期"}
+                {field:"detail", text:"内容"},
+                {field:"statusDesc", text:"状态以及原因分析"},
+                {field:"createTime", text:"创建时间"}
             ],	
             cls: "",
-            url: _urlPath + "admin/log/queryPage",
+            url: _urlPath + "admin/log/queryDeviceLogPage",
             sort:"id",
             order:"desc",
             pagination:true,
