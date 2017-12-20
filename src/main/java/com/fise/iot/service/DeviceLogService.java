@@ -11,8 +11,6 @@ import com.fise.iot.common.utils.AppUtil;
 import com.fise.iot.common.utils.DateUtil;
 import com.fise.iot.common.utils.StringUtil;
 import com.fise.iot.mapper.DeviceLogMapper;
-import com.fise.iot.mapper.DeviceMapper;
-import com.fise.iot.model.Device;
 import com.fise.iot.model.DeviceLog;
 import com.fise.iot.model.DeviceLogExample;
 import com.github.pagehelper.page.PageMethod;
@@ -42,18 +40,18 @@ public class DeviceLogService extends AbstratService<DeviceLog> {
 		}
 		String currentTime = DateUtil.getCurDateTime();
 		if(!StringUtil.isEmpty(time)){
-		if (time.equals(0)) {
+		if (time.equals("0")) {
 			// 前一天的当前时间
 			String oneDay = DateUtil.getBeforeDate(Calendar.DAY_OF_MONTH, -1);
 			criteria.andCreateTimeBetween(oneDay, currentTime);
 		}
 
-		if (time.equals(1)) {
+		if (time.equals("1")) {
 			//一个星期前的当前时间
 		    String oneWeek = DateUtil.getBeforeDate(Calendar.DAY_OF_MONTH, -7);
 			criteria.andCreateTimeBetween(oneWeek, currentTime);
 		}
-		if (time.equals(2)) {
+		if (time.equals("2")) {
 			//一个月前的当前时间
 		    String oneMonth = DateUtil.getBeforeDate(Calendar.MONTH, -1);
 			criteria.andCreateTimeBetween(oneMonth, currentTime);
