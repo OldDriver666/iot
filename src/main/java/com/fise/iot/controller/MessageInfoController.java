@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
+import org.springframework.integration.support.MessageBuilder;
+import org.springframework.messaging.Message;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fise.iot.common.Constant;
 import com.fise.iot.common.annotation.Authority;
 import com.fise.iot.common.annotation.ControllerLog;
-import com.fise.iot.common.mqtt.MQTTPublish;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
 import com.fise.iot.model.DeviceLog;
@@ -31,11 +34,15 @@ import com.fise.iot.service.MessageInfoService;
 @Controller
 @RequestMapping("/admin/message/")
 public class MessageInfoController {
+	
 	/**日志*/
 	public static Logger logger = LoggerFactory.getLogger(MessageInfoController.class);
 	
+	@Value("${mqtt.publish.topic}") 
+	private String publish;
+	
 	@Autowired
-	MQTTPublish mqttPublish;
+	MqttPahoMessageHandler messageHandler;
 	
 	@Autowired
 	DeviceLogService deviceLogService;
@@ -123,9 +130,11 @@ public class MessageInfoController {
 	    String content = mqtt.getContent();
 	    Integer qos = mqtt.getQos();
 	    try {
-	    	//发送消息
-	    	mqttPublish.publishMessage(topicUrl, content, qos);
-	    	//保存消息日志
+		    messageHandler.setDefaultTopic(publish + topicUrl);
+		    messageHandler.setDefaultQos(qos);
+		    Message<String> message = MessageBuilder.withPayload(content).build();  
+		    messageHandler.handleMessage(message);  
+		    
 	    	DeviceLog deviceLog = new DeviceLog();
 	    	deviceLog.setProductId(mqtt.getProductId());
 	    	deviceLog.setDeviceName(mqtt.getDeviceName());
