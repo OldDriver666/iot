@@ -8,19 +8,28 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
+import org.springframework.integration.support.MessageBuilder;
+import org.springframework.messaging.Message;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fise.iot.common.Constant;
 import com.fise.iot.common.annotation.Authority;
 import com.fise.iot.common.annotation.ControllerLog;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
+import com.fise.iot.common.utils.DateUtil;
 import com.fise.iot.model.Device;
+import com.fise.iot.model.DeviceLog;
+import com.fise.iot.model.MQTTDto;
 import com.fise.iot.model.MessagePublish;
 import com.fise.iot.model.Topic;
 import com.fise.iot.service.DeviceInfoService;
+import com.fise.iot.service.DeviceLogService;
 import com.fise.iot.service.TopicService;
 
 /**
@@ -32,8 +41,18 @@ public class DeviceInfoController {
 	/** 日志 */
 	public static Logger logger = LoggerFactory.getLogger(DeviceInfoController.class);
 
+
+	@Value("${mqtt.publish.topic}") 
+	private String publish;
+	
+	@Autowired
+	MqttPahoMessageHandler messageHandler;
+	
 	@Autowired
 	private DeviceInfoService deviceService;
+	
+	@Autowired
+	DeviceLogService deviceLogService;
 
 	@Autowired
 	private TopicService topicService;
@@ -118,22 +137,53 @@ public class DeviceInfoController {
 	 */
 	@Authority(opCode = "040205", opName = "发布消息页面")
 	@RequestMapping("devicePublishPage/{id}")
-	public String devicePublishPage(@PathVariable("id") int id,HttpServletRequest request,Map<String, Object> map) {
-		//根据topicId查出对应得topicUrl
-		Topic topic=topicService.queryTopicByID(id);
-		String topicUrl=topic.getTopicUrl();
-//		String topicUrl=request.getParameter("topicUrl");
+	public String devicePublishPage(@PathVariable("id") int id,String topicUrl, Map<String, Object> map) {
+//		//根据topicId查出对应得topicUrl
+//		Topic topic=topicService.queryTopicByID(id);
+//		String topicUrl=topic.getTopicUrl();
+////		String topicUrl=request.getParameter("topicUrl");
 		map.put("topicUrl", topicUrl);
 		return "device/device_publish";
 	}
 	
 	//需要知道，哪个设备的哪个Topic被操作了。
+//	@ControllerLog("发布消息")
+//	@RequestMapping("devicePublish")
+//	@ResponseBody
+//	@Authority(opCode = "040205", opName = "发布消息")
+//	public AjaxResult devicePublish(MessagePublish message) {
+//		topicService.publishMessage(message);
+//		return null;
+//	}
+	
 	@ControllerLog("发布消息")
-	@RequestMapping("devicePublish")
-	@ResponseBody
 	@Authority(opCode = "040205", opName = "发布消息")
-	public AjaxResult devicePublish(MessagePublish message) {
-		topicService.publishMessage(message);
-		return null;
+	@ResponseBody
+	@RequestMapping("devicePublish")
+	public String publishMsg(MQTTDto mqtt){
+	    String topicUrl = mqtt.getTopicUrl();
+	    String content = mqtt.getContent();
+	    Integer qos = mqtt.getQos();
+	    String [] str= topicUrl.split("/");
+	    
+	    try {
+		    messageHandler.setDefaultTopic(publish + topicUrl);
+		    messageHandler.setDefaultQos(qos);
+		    Message<String> message = MessageBuilder.withPayload(content).build();  
+		    messageHandler.handleMessage(message);  
+		    
+	    	DeviceLog deviceLog = new DeviceLog();
+	    	deviceLog.setProductId(str[1]);
+	    	deviceLog.setDeviceName(str[2]);
+	    	deviceLog.setDetail(content);
+	    	deviceLog.setType(Constant.TOPIC_TYPE_UP);
+	    	deviceLog.setCreateTime(DateUtil.getCurDateTime());
+	    	deviceLogService.save(deviceLog);
+	    	
+		} catch (Exception e) {
+			return "failed";
+		}
+	    return "success";
 	}
+	
 }

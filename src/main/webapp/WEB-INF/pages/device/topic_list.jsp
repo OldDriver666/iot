@@ -26,7 +26,7 @@
                 }},
                 {field:"messageNum",sortColumn:"messageNum", text:"发布消息数"},
                 {field:"id", text:"操作", style:"text-align:center", formatter:function(index, content, data){
-                	var publishUrl = "admin/device/devicePublishPage/" + content ;
+                	var publishUrl = "admin/device/devicePublishPage/" + content + "?topicUrl="+data.topicUrl;
                     return "<a href='javascript:showModal(\"发布消息\", \""+publishUrl+"\");' class='btn btn-xs btn-warning add-tooltip'><i class='fa fa-pencil'>发布消息</i></a>";
                 }}
             ],	

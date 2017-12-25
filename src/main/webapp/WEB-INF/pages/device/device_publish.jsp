@@ -14,10 +14,10 @@
       </div>
       
      <div class="form-group">
-        <label class="col-sm-3 control-label" for="messageContent"><font color="red">*</font>消息内容：</label>
+        <label class="col-sm-3 control-label" for="content"><font color="red">*</font>消息内容：</label>
         <div class="col-sm-8">
-            <input class="form-control" type="text" id="messageContent" name="messageContent"/>
-            <div id="validation-messageContent" class="validate-error help-block"></div>
+            <input class="form-control" type="text" id="content" name="content"/>
+            <div id="validation-content" class="validate-error help-block"></div>
         </div>
      </div>
     

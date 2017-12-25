@@ -100,6 +100,9 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
 		//动态url过滤,如update/{id}/{productId}/{deviceId}
 		for (AuthOperation oper : list) {
 			href = oper.getOphref();
+			if(href.contains("?")){
+				href= href.substring(0, href.indexOf("?"));
+			}
 			if(href.contains("{")){
 				href = href.substring(0, href.indexOf("{")-1);
 			}
