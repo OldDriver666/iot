@@ -4,7 +4,6 @@
       <div class="col-sm-10 ">
 		<span style="color: black; font-size:12px">注意：如果该Topic正在被应用使用，请谨慎操作，以防应用出现异常。</span>
 	  </div>
-	  
 	  <div class="form-group">
         <label class="col-sm-3 control-label" for="topicUrl"><font color="red">*</font>topic：</label>
         <div class="col-sm-8">
@@ -32,13 +31,13 @@
 					<input value="1" name="qos" type="radio" class="ace"/>1
 				</label>
 			</div>
-        </div>
+        </div>  
     </div>
 </form>
 <script type="text/javascript">
 	 submit = function(){
 		frmValidate();
 	    var data = $("#submitForm").serialize();
-		ajaxRequest("admin/device/devicePublish", data);
+		ajaxRequest("admin/device/devicePublish/"+"${id}", data);
 	}
 </script>

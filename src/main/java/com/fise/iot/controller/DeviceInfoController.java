@@ -159,13 +159,13 @@ public class DeviceInfoController {
 	@ControllerLog("发布消息")
 	@Authority(opCode = "040205", opName = "发布消息")
 	@ResponseBody
-	@RequestMapping("devicePublish")
-	public String publishMsg(MQTTDto mqtt){
+	@RequestMapping("devicePublish/{id}")
+	public String publishMsg(@PathVariable("id") int id,MQTTDto mqtt){
 	    String topicUrl = mqtt.getTopicUrl();
 	    String content = mqtt.getContent();
 	    Integer qos = mqtt.getQos();
 	    String [] str= topicUrl.split("/");
-	    
+	    System.out.println(id);
 	    try {
 		    messageHandler.setDefaultTopic(publish + topicUrl);
 		    messageHandler.setDefaultQos(qos);
@@ -183,6 +183,11 @@ public class DeviceInfoController {
 		} catch (Exception e) {
 			return "failed";
 		}
+	    //发布消息的数量要累加
+	    Topic topic=  topicService.queryByID(id);
+	    topic.setMessageNum(topic.getMessageNum()+1);
+	    topic.setUpdateTime(DateUtil.getCurDateTime());
+	    topicService.update(topic);
 	    return "success";
 	}
 	
