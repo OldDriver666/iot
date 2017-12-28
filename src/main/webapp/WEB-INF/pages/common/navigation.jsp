@@ -5,7 +5,7 @@
 	</button>
 	<div class="navbar-inner">
 		<div class="navbar-header">
-			<a href="#" class="navbar-brand" style="font-size: 22px;"><div style="vertical-align: unset;"></div>管理系统</a>
+			<a href="#" class="navbar-brand" style="font-size: 22px;"><div style="vertical-align: unset;"></div>物联网系统</a>
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse">
 				<i class="navbar-icon fa fa-bars"></i>
 			</button>
