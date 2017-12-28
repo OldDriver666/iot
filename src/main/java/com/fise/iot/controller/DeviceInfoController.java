@@ -70,12 +70,12 @@ public class DeviceInfoController {
 	}
 
 	@ControllerLog("查询设备列表")
-	@RequestMapping("queryDevicePage/{productId}")
+	@RequestMapping("queryDevicePage/{id}")
 	@ResponseBody
 	@Authority(opCode = "0402", opName = "查询设备列表")
-	public PageAjax<Device> queryDevicePage(@PathVariable("productId") String productId,PageAjax<Device> page, Device device) {
-//		Product product = productService.queryByID(id);
-//		String productId = product.getProductId();
+	public PageAjax<Device> queryDevicePage(@PathVariable("id") int id,PageAjax<Device> page, Device device) {
+		Product product = productService.queryByID(id);
+		String productId = product.getProductId();
 		return deviceService.queryDevicePage(page, device,productId);
 	}
 

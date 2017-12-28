@@ -52,7 +52,7 @@
 		        <a href="#"><i class="menu-icon fa fa-barcode"></i><span class="mm-text">产品管理</span></a>
 		        <ul>
 		            <li opCode="0401">
-		                <a tabindex="-1" href="javascript:goPage('admin/product/baseinfoPage')"><span class="mm-text">产品信息</span></a>
+		                <a tabindex="-1" href="javascript:goPage('admin/product/productinfoPage')"><span class="mm-text">产品信息</span></a>
 		            </li>
 		            <li opCode="0402">
 		                <a tabindex="-1" href="javascript:goPage('admin/device/deviceinfoPage')"><span class="mm-text">设备管理</span></a>

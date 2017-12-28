@@ -52,7 +52,7 @@
                 }}
             ],	
             cls: "",
-            url: _urlPath + "admin/device/queryDevicePage/${productId}",
+            url: _urlPath + "admin/device/queryDevicePage/${id}",
             sort:"id",
             order:"desc",
             pagination:true,
