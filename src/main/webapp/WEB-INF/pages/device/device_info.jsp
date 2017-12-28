@@ -43,7 +43,7 @@
                 {field:"updateTime", text:"修改时间"},
                 {field:"lastTime", text:"最后上线时间"},
                 {field:"id", text:"操作", style:"text-align:center", formatter:function(index, content, data){
-                	var topicUrl = "admin/device/topicListPage/" + content;
+                	var topicUrl = "admin/device/topicListPage/"+data.productId+"/"+data.deviceName;
                 	var editUrl = "admin/device/updateDevicePage/" + content;
                     var delUrl = "admin/device/delDevice/" + content;
                     return "<a href='javascript:goPage(\""+topicUrl+"\")' class='btn btn-xs btn-info'><i class='ace-icon fa fa-th-list'>Topic列表</i></a>"
@@ -52,7 +52,7 @@
                 }}
             ],	
             cls: "",
-            url: _urlPath + "admin/device/queryDevicePage/${id}",
+            url: _urlPath + "admin/device/queryDevicePage/${productId}",
             sort:"id",
             order:"desc",
             pagination:true,

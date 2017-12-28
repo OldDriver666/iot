@@ -1,25 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<div>
-	<div>
-		<li class="mm-dropdown" opCode="04">
-			<ul>
-				<!-- <li opCode="0401"><a tabindex="-1"
-					href="javascript:goPage('admin/product/baseinfoPage')"><span
-						class="mm-text">基本信息</span></a></li> -->
-				<li opCode="0402"><a tabindex="-1"
-					href="javascript:goPage('admin/device/deviceinfoPage/${productId}')"><span
-						class="mm-text">设备管理</span></a></li>
-				<li opCode="0403"><a tabindex="-1"
-					href="javascript:goPage('admin/message/messageinfoPage')"><span
-						class="mm-text">消息通信</span></a></li>
-				<li opCode="0404"><a tabindex="-1"
-					href="javascript:goPage('admin/tech/articlePage')"><span
-						class="mm-text">服务端订阅</span></a></li>
-				<li opCode="0405"><a tabindex="-1"
-					href="javascript:goPage('admin/log/deviceLogPage')"><span
-						class="mm-text">日志服务</span></a></li>
-			</ul>
-		</li>
+<div class="left-col col-md-3">
+	<div class="list-group">
+			<a class="list-group-item",
+				href="javascript:goPage('admin/product/productinfoPage')"><h5 class="list-group-item-heading">基本信息</h5></a> 
+			<a class="list-group-item",
+				href="javascript:goPage('admin/device/deviceinfoPage/${id}')"><h5 class="list-group-item-heading">设备管理</h5></a> 
+			<a class="list-group-item",
+				href="javascript:goPage('admin/message/messageinfoPage')"><h5 class="list-group-item-heading">消息通信</h5></a> 
+			<a  class="list-group-item",
+				href="javascript:goPage('admin/log/deviceLogPage')"><h5 class="list-group-item-heading">日志服务</h5></a>
 		</ul>
 	</div>
 </div>

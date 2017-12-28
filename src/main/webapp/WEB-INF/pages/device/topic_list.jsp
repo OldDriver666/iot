@@ -31,7 +31,7 @@
                 }}
             ],	
             cls: "",
-            url: _urlPath + "admin/device/topicResultPage/${id}",
+            url: _urlPath + "admin/device/topicResultPage/${productId}/${deviceName}",
             sort:"id",
             order:"desc",
             pagination:true,

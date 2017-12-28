@@ -68,14 +68,16 @@ public class DeviceInfoController {
 		map.put("productId", productId);
 		return "device/device_info";
 	}
-
+	/**
+	 * 传入的是产品的id
+	 */
 	@ControllerLog("查询设备列表")
-	@RequestMapping("queryDevicePage/{id}")
+	@RequestMapping("queryDevicePage/{productId}")
 	@ResponseBody
 	@Authority(opCode = "0402", opName = "查询设备列表")
-	public PageAjax<Device> queryDevicePage(@PathVariable("id") int id,PageAjax<Device> page, Device device) {
-		Product product = productService.queryByID(id);
-		String productId = product.getProductId();
+	public PageAjax<Device> queryDevicePage(@PathVariable("productId") String productId,PageAjax<Device> page, Device device) {
+//		Product product = productService.queryByID(id);
+//		String productId = product.getProductId();
 		return deviceService.queryDevicePage(page, device,productId);
 	}
 
@@ -96,22 +98,27 @@ public class DeviceInfoController {
 	}
 
 	@Authority(opCode = "040202", opName = "Topic列表页面")
-	@RequestMapping("topicListPage/{id}")
-	public String topicListPage(@PathVariable("id") int id,Map<String, Object> map) {
-		map.put("id", id);
+	@RequestMapping("topicListPage/{productId}/{deviceName}")
+	public String topicListPage(@PathVariable("deviceName") String deviceName,
+			                    @PathVariable("productId") String productId,
+			                    Map<String, Object> map) {
+		map.put("deviceName", deviceName);
+		map.put("productId", productId);
 		return "device/topic_list";
 	}
 
 	@ControllerLog("Topic列表页面")
-	@RequestMapping("topicResultPage/{id}")
+	@RequestMapping("topicResultPage/{productId}/{deviceName}")
 	@ResponseBody
 	@Authority(opCode = "040202", opName = "Topic列表页面")
-	public PageAjax<Topic> topicResultPage(@PathVariable("id") int id) {
-		// 根据id查出该设备的信息
-		Device device = deviceService.queryDeviceByID(id);
-		String deviceName = device.getDeviceName();
+	public PageAjax<Topic> topicResultPage(@PathVariable("productId") String productId,
+			                               @PathVariable("deviceName") String deviceName) {
+         System.out.println(productId);
+//		// 根据id查出该设备的信息
+//		Device device = deviceService.queryDeviceByID(id);
+//		String deviceName = device.getDeviceName();
 		// 根据其中的productId查出所有的Topic，替换其中的devicename
-		String productId = device.getProductId();
+		//String productId = device.getProductId();
 		List<Topic> topicList = topicService.queryTopicPage(productId, deviceName);
 		
 		return new PageAjax<Topic>(topicList);

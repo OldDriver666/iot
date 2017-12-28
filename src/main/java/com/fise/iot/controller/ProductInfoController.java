@@ -82,9 +82,9 @@ public class ProductInfoController {
 	}
 	
 	@Authority(opCode = "040105", opName = "产品菜单界面")
-	@RequestMapping("productMenuPage/{productId}")
-	public String productMenu(@PathVariable("productId") String productId, Map<String, Object> map) {
-		map.put("productId", productId);
+	@RequestMapping("productMenuPage/{id}")
+	public String productMenu(@PathVariable("id") int id, Map<String, Object> map) {
+		map.put("id", id);
 		return "product/product_menu";
 	}
 

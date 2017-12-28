@@ -28,7 +28,7 @@
             columns:[
                 {field:"id",text:"ID"},
                 {field:"productId",text:"产品ID", formatter:function(index, content, data){
-                	var goUrl='admin/product/productMenuPage/'+content;
+                	var goUrl='admin/device/deviceinfoPage/'+content;
                     return "<a tabindex='-1' href=javascript:goPage(\""+goUrl+"\")>" +content+ "</a>";
                 }},
                 {field:"productName", text:"产品名称"},
