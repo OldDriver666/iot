@@ -27,7 +27,10 @@
         $("#openAppGrid").sgrid({
             columns:[
                 {field:"id",text:"ID"},
-                {field:"productId",text:"产品ID"},
+                {field:"productId",text:"产品ID", formatter:function(index, content, data){
+                	var goUrl='admin/product/productMenuPage/'+content;
+                    return "<a tabindex='-1' href=javascript:goPage(\""+goUrl+"\")>" +content+ "</a>";
+                }},
                 {field:"productName", text:"产品名称"},
                 {field:"productKey", text:"productKey"},
                 {field:"productDesc", text:"产品描述"},

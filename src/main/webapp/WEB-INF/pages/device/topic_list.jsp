@@ -3,7 +3,7 @@
 <div class="page-header" style="padding:10px 20px;margin:-18px 0px 0px">
   <div id="searchForm">
 	  <div class="col-md-3" style="text-align: left;padding-bottom: unset">
-        <button id="backBtn" class="btn btn-labeled btn-primary" onclick="javascript:goPage('admin/device/deviceinfoPage');">返回</button>
+        <button id="backBtn" class="btn btn-labeled btn-primary" onclick="javascript:goPage('admin/device/deviceinfoPage/'+${id});">返回上一页</button>
      </div>
   </div>
 </div>
@@ -31,7 +31,7 @@
                 }}
             ],	
             cls: "",
-            url: _urlPath + "admin/device/topicResultPage/"+"${id}",
+            url: _urlPath + "admin/device/topicResultPage/${id}",
             sort:"id",
             order:"desc",
             pagination:true,

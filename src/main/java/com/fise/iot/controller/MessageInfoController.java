@@ -27,7 +27,7 @@ import com.fise.iot.model.MQTTDto;
 import com.fise.iot.model.Product;
 import com.fise.iot.model.Topic;
 import com.fise.iot.model.TopicSave;
-import com.fise.iot.service.BaseInfoService;
+import com.fise.iot.service.ProductInfoService;
 import com.fise.iot.service.DeviceLogService;
 import com.fise.iot.service.MessageInfoService;
 
@@ -51,11 +51,12 @@ public class MessageInfoController {
 	private MessageInfoService messageService;
 	
 	@Autowired
-    private BaseInfoService baseInfoService;
+    private ProductInfoService baseInfoService;
 	
 	@Authority(opCode = "0403", opName = "查询消息通信界面")
-	@RequestMapping("messageinfoPage")
-	public String messagePage() {
+	@RequestMapping("messageinfoPage/{productId}")
+	public String messagePage(@PathVariable("productId") String productId,Map<String, Object> map) {
+		map.put("productId", productId);
 		return "message/message_info";
 	}
 	

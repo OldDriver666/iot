@@ -17,7 +17,7 @@ import com.fise.iot.model.ProductExample;
 import com.github.pagehelper.page.PageMethod;
 
 @Service
-public class BaseInfoService extends AbstratService<Product> {
+public class ProductInfoService extends AbstratService<Product> {
 	
 	@Autowired
 	private ProductMapper productMapper;

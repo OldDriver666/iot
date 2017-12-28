@@ -1,7 +1,6 @@
 package com.fise.iot.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +13,6 @@ import com.fise.iot.common.utils.DateUtil;
 import com.fise.iot.common.utils.StringUtil;
 import com.fise.iot.mapper.ProductMapper;
 import com.fise.iot.mapper.TopicMapper;
-import com.fise.iot.model.Product;
-import com.fise.iot.model.ProductExample;
 import com.fise.iot.model.Topic;
 import com.fise.iot.model.TopicExample;
 import com.github.pagehelper.page.PageMethod;
@@ -38,7 +35,6 @@ public class MessageInfoService extends AbstratService<Topic>{
 		if(!StringUtil.isEmpty(topic.getProductId())){
 			criteria.andProductIdLike(topic.getProductId());
 		}
-		
 		List<Topic> list = topicMapper.selectByExample(example);
 		return AppUtil.returnPage(list);
 	}

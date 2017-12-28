@@ -10,8 +10,11 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="creator" jdbcType="VARCHAR" property="creator" />
     <result column="updator" jdbcType="VARCHAR" property="updator" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="last_time" jdbcType="VARCHAR" property="lastTime" />
   </resultMap>
+  
+  
+  
 </mapper>

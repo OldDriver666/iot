@@ -1,6 +1,8 @@
 package com.fise.iot.common.aspect;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -53,35 +55,6 @@ public class LogAspect {
 	 */
 	@Before("controllerAspect()")
 	public void doBefore(JoinPoint joinPoint) {
-//		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//		// 读取session中的用户
-//		AuthUser user = (AuthUser) request.getAttribute("loginUser");
-//		String username = "匿名操作";
-//		ParamData params = new ParamData();
-//		if (null != user) {
-//			username = user.getUsername();
-//		}else{
-//			if(params.containsKey("username")){
-//				username = params.getString("username");
-//			}
-//		}
-//		ILog log = new ILog();
-//		log.setUsername(username);
-//		log.setType(0);
-//		log.setUrl(request.getRequestURI());
-//		log.setMethod((joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()"));
-//		log.setParams(params.toString());
-//		log.setRequestip(IPUtil.getIpAdd(request));
-//		log.setOperDate(DateUtil.getCurDateTime());
-//		try {
-//			//log.setDescription(getControllerMethodDescription(joinPoint));
-//			// 保存数据库
-//			logService.save(log);
-//		} catch (Exception e) {
-//			// 记录本地异常日志
-//			logger.error("==前置通知异常==");
-//			logger.error("异常信息:{}", e.getMessage());
-//		}
 		getLog(joinPoint, null);
 	}
 
@@ -92,36 +65,6 @@ public class LogAspect {
 	 */
 	@AfterThrowing(pointcut = "serviceAspect()", throwing = "e")
 	public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
-//		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//		// 读取session中的用户
-//		AuthUser user = (AuthUser) request.getAttribute("loginUser");
-//		String username = "匿名操作";
-//		ParamData params = new ParamData();
-//		if (null != user) {
-//			username = user.getUsername();
-//		}else{
-//			if(params.containsKey("username")){
-//				username = params.getString("username");
-//			}
-//		}
-//		ILog log = new ILog();
-//		log.setUsername(username);
-//		log.setType(1);
-//		log.setUrl(request.getRequestURI());
-//		log.setMethod((joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()"));
-//		log.setParams(params.toString());
-//		log.setRequestip(IPUtil.getIpAdd(request));
-//		log.setOperDate(DateUtil.getCurDateTime());
-//		log.setDetail(e.getMessage());
-//		try {
-//			log.setDescription(getServiceMthodDescription(joinPoint));
-//			// 保存数据库
-//			logService.save(log);
-//		} catch (Exception ex) {
-//			// 记录本地异常日志
-//			logger.error("==异常通知异常==");
-//			logger.error("异常信息:{}", ex.getMessage());
-//		}
 		getLog(joinPoint, e);
 	}
 	

@@ -25,6 +25,9 @@ public class DeviceLogService extends AbstratService<DeviceLog> {
 		PageMethod.startPage(page.getPageNo(), page.getPageSize());
 		DeviceLogExample example = new DeviceLogExample();
 		DeviceLogExample.Criteria criteria = example.createCriteria();
+		if(!StringUtil.isEmpty(deviceLog.getProductId())){
+			criteria.andProductIdEqualTo(deviceLog.getProductId());
+		}
 		if (!StringUtil.isEmpty(deviceLog.getDeviceName())) {
 			criteria.andDeviceNameLike("%" + deviceLog.getDeviceName() + "%");
 		}

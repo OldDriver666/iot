@@ -25,12 +25,15 @@ public class DeviceInfoService extends AbstratService<Device>{
 	private DeviceMapper deviceMapper;
 
 	@ServiceLog("查询产品列表")
-	public PageAjax<Device> queryDevicePage(PageAjax<Device> page, Device device) {
+	public PageAjax<Device> queryDevicePage(PageAjax<Device> page, Device device,String productId) {
 		PageMethod.startPage(page.getPageNo(), page.getPageSize());
 		
 		DeviceExample example=new DeviceExample();
 		DeviceExample.Criteria criteria=example.createCriteria();
 		criteria.andStatusNotEqualTo(2);
+		if(!StringUtil.isEmpty(productId)){
+			criteria.andProductIdEqualTo(productId);
+		}
 		if(!StringUtil.isEmpty(device.getDeviceName())){
 			criteria.andDeviceNameLike("%" + device.getDeviceName()+ "%");
 		}

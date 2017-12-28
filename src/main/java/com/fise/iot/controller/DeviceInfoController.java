@@ -27,9 +27,11 @@ import com.fise.iot.model.Device;
 import com.fise.iot.model.DeviceLog;
 import com.fise.iot.model.MQTTDto;
 import com.fise.iot.model.MessagePublish;
+import com.fise.iot.model.Product;
 import com.fise.iot.model.Topic;
 import com.fise.iot.service.DeviceInfoService;
 import com.fise.iot.service.DeviceLogService;
+import com.fise.iot.service.ProductInfoService;
 import com.fise.iot.service.TopicService;
 
 /**
@@ -52,23 +54,29 @@ public class DeviceInfoController {
 	private DeviceInfoService deviceService;
 	
 	@Autowired
-	DeviceLogService deviceLogService;
+	private DeviceLogService deviceLogService;
 
 	@Autowired
 	private TopicService topicService;
+	
+	@Autowired
+	private ProductInfoService productService;
 
 	@Authority(opCode = "0402", opName = "设备基本信息界面")
-	@RequestMapping("deviceinfoPage")
-	public String devicePage() {
+	@RequestMapping("deviceinfoPage/{productId}")
+	public String devicePage(@PathVariable("productId") String productId, Map<String, Object> map) {
+		map.put("productId", productId);
 		return "device/device_info";
 	}
 
 	@ControllerLog("查询设备列表")
-	@RequestMapping("queryDevicePage")
+	@RequestMapping("queryDevicePage/{productId}")
 	@ResponseBody
 	@Authority(opCode = "0402", opName = "查询设备列表")
-	public PageAjax<Device> queryDevicePage(PageAjax<Device> page, Device device) {
-		return deviceService.queryDevicePage(page, device);
+	public PageAjax<Device> queryDevicePage(@PathVariable("productId") String productId,PageAjax<Device> page, Device device) {
+//		Product product = productService.queryByID(id);
+//		String productId = product.getProductId();
+		return deviceService.queryDevicePage(page, device,productId);
 	}
 
 	@Authority(opCode = "040201", opName = "更新设备页面")
@@ -89,7 +97,7 @@ public class DeviceInfoController {
 
 	@Authority(opCode = "040202", opName = "Topic列表页面")
 	@RequestMapping("topicListPage/{id}")
-	public String topicListPage(@PathVariable("id") int id, Map<String, Object> map) {
+	public String topicListPage(@PathVariable("id") int id,Map<String, Object> map) {
 		map.put("id", id);
 		return "device/topic_list";
 	}
