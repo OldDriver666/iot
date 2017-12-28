@@ -25,4 +25,8 @@ public class Constant {
 	public static final String PRE_REQUEST_TIME = "PRE_REQUEST_TIME";
 	/**非法请求次数*/
 	public static final String MAL_REQUEST_TIMES = "MAL_REQUEST_TIMES";
+	/**消息上行*/
+	public static final Integer TOPIC_TYPE_UP = 1;
+	/**消息下行*/
+	public static final Integer TOPIC_TYPE_DOWN = 2;
 }

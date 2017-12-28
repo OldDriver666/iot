@@ -7,7 +7,6 @@ import javax.persistence.Table;
 
 /**
  * 文件信息表
- * @author CZH
  */
 @Table(name = "i_file")
 public class IFile {

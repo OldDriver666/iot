@@ -97,17 +97,16 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
 		boolean isOper = false;
 		String url = request.getServletPath();
 		String href = null;
-		//动态url过滤,如update/{id}
-		String dyUrl = url.substring(url.lastIndexOf("/") + 1);
-		if(StringUtils.isNumeric(dyUrl)){
-			url = url.substring(0, url.lastIndexOf("/"));
-		}
+		//动态url过滤,如update/{id}/{productId}/{deviceId}
 		for (AuthOperation oper : list) {
 			href = oper.getOphref();
-			if(StringUtils.isNumeric(dyUrl) && href.contains("{")){
-				href = href.substring(0, href.lastIndexOf("/"));
+			if(href.contains("?")){
+				href= href.substring(0, href.indexOf("?"));
 			}
-			if(url.equals(href)){
+			if(href.contains("{")){
+				href = href.substring(0, href.indexOf("{")-1);
+			}
+			if(url.contains(href)){
 				isOper = true;
 				break;
 			}

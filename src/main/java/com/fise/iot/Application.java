@@ -7,6 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Import;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,9 +16,10 @@ import com.fise.iot.common.datasource.DynamicDataSourceRegister;
 /**
  * springboot启动器
  */
-@Controller
+@Controller 
 // 开启缓存
 @EnableCaching
+@EnableScheduling
 @MapperScan(basePackages = "com.fise.*.mapper")
 @Import(DynamicDataSourceRegister.class)
 @SpringBootApplication

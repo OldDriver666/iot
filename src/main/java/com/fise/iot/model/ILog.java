@@ -7,7 +7,6 @@ import javax.persistence.Table;
 
 /**
  * 日志信息表
- * @author CZH
  */
 @Table(name = "i_log")
 public class ILog {
