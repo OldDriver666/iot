@@ -9,7 +9,7 @@
         <button id="searchBtn" class="btn btn-labeled btn-info" onclick="javascript:formSubmit();"><span class="btn-label icon fa fa-search"></span>搜索</button>
     </div>
     <div class="col-md-3" style="text-align: left;padding-bottom: unset">
-        <button id="addBtn" class="btn btn-labeled btn-primary" onclick="javascript:showModal('定义Topic类', 'admin/message/addMessagePage');"><span class="btn-label icon fa fa-plus"></span>定义Topic类</button>
+        <button id="addBtn" class="btn btn-labeled btn-primary" onclick="javascript:showModal('定义Topic类', 'admin/message/addMessagePage/${productId}');"><span class="btn-label icon fa fa-plus"></span>定义Topic类</button>
     </div>
   </div>
 </div>
@@ -39,7 +39,7 @@
                 }}
             ],	
             cls: "",
-            url: _urlPath + "admin/message/queryMessagePage",
+            url: _urlPath + "admin/message/queryMessagePage/${productId}",
             sort:"id",
             order:"desc",
             pagination:true,

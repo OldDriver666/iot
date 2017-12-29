@@ -49,7 +49,7 @@
                 {field:"createTime", text:"创建时间"}
             ],	
             cls: "",
-            url: _urlPath + "admin/log/queryDeviceLogPage",
+            url: _urlPath + "admin/log/queryDeviceLogPage/${productId}",
             sort:"id",
             order:"desc",
             pagination:true,

@@ -35,7 +35,7 @@ public class DeviceLogController {
 	}
 	
 	@ControllerLog("查询设备日志")
-	@RequestMapping("queryDeviceLogPage")
+	@RequestMapping("queryDeviceLogPage/{productId}")
 	@ResponseBody
 	@Authority(opCode = "0405", opName = "查询设备日志")
 	public PageAjax<DeviceLog> queryDeviceLogPage(PageAjax<DeviceLog> page, DeviceLog deviceLog,String time) {

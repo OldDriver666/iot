@@ -61,11 +61,11 @@ public class MessageInfoController {
 	}
 	
 	@ControllerLog("消息通信列表")
-	@RequestMapping("queryMessagePage")
+	@RequestMapping("queryMessagePage/{productId}")
 	@ResponseBody
 	@Authority(opCode = "0403", opName = "消息通信列表")
-	public PageAjax<Topic> queryMessagePage(PageAjax<Topic> page, Topic topic) {
-		return messageService.queryMessagePage(page,topic);
+	public PageAjax<Topic> queryMessagePage(@PathVariable("productId") String productId,PageAjax<Topic> page) {
+		return messageService.queryMessagePage(page,productId);
 	}
 	
 	@Authority(opCode = "040302", opName = "更新消息页面")
@@ -103,24 +103,25 @@ public class MessageInfoController {
 	public AjaxResult delMessage(@PathVariable("id") int id) {
 		return messageService.delMessage(id);
 	}
-	
+	/**
+	 * 根据productId拿到ProductKey
+	 */
 	@Authority(opCode = "040304", opName = "添加topic页面")
-    @RequestMapping("addMessagePage")
-    public String addMessagePage(Map<String, Object> map) {
-        List<Product> productlist = baseInfoService.queryAll();
-        map.put("productlist", productlist);
+    @RequestMapping("addMessagePage/{productId}")
+    public String addMessagePage(@PathVariable("productId") String productId, Map<String, Object> map) {
+		String productKey=messageService.getProductKey(productId);
+		String prefix="/"+productKey+"/${deviceName}/";
+		map.put("prefix", prefix);
         return "message/message_add";
     }
 	
+	
+	@ControllerLog("定义Topic")
+	@RequestMapping("addTopic/{productId}")
+	@ResponseBody
 	@Authority(opCode = "040305", opName = "保存topic")
-	@RequestMapping("addTopic")
-	public AjaxResult addTopic(TopicSave save){
-	    Topic topic = new Topic();
-	    topic.setProductId(save.getProductId());
-	    topic.setTopicUrl("/"+save.getProductKey()+"/${deviceName}/"+save.getTopic_suffix());
-	    topic.setOperAuth(save.getOper_auth());
-	    
-	    return  messageService.save(topic);
+	public AjaxResult addTopic(@PathVariable("productId") String productId,TopicSave topic){
+	    return  messageService.addTopic(productId,topic);
 	}
 	
 	@ControllerLog("发布消息")
@@ -148,6 +149,4 @@ public class MessageInfoController {
 		}
 	    return "success";
 	}
-	
-	
 }

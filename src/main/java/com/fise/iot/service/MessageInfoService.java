@@ -13,8 +13,11 @@ import com.fise.iot.common.utils.DateUtil;
 import com.fise.iot.common.utils.StringUtil;
 import com.fise.iot.mapper.ProductMapper;
 import com.fise.iot.mapper.TopicMapper;
+import com.fise.iot.model.Product;
+import com.fise.iot.model.ProductExample;
 import com.fise.iot.model.Topic;
 import com.fise.iot.model.TopicExample;
+import com.fise.iot.model.TopicSave;
 import com.github.pagehelper.page.PageMethod;
 
 @Service
@@ -27,13 +30,13 @@ public class MessageInfoService extends AbstratService<Topic>{
 	private ProductMapper productMapper;
 
 	@ServiceLog("消息通信列表")
-	public PageAjax<Topic> queryMessagePage(PageAjax<Topic> page, Topic topic) {
+	public PageAjax<Topic> queryMessagePage(PageAjax<Topic> page,String productId) {
 		PageMethod.startPage(page.getPageNo(), page.getPageSize());
 		
 		TopicExample example=new TopicExample();
 		TopicExample.Criteria criteria=example.createCriteria();
-		if(!StringUtil.isEmpty(topic.getProductId())){
-			criteria.andProductIdLike(topic.getProductId());
+		if(!StringUtil.isEmpty(productId)){
+			criteria.andProductIdLike(productId);
 		}
 		List<Topic> list = topicMapper.selectByExample(example);
 		return AppUtil.returnPage(list);
@@ -72,9 +75,35 @@ public class MessageInfoService extends AbstratService<Topic>{
 		return AppUtil.returnObj(null);
 	}
 	
+	@ServiceLog("保存topic")
+	public AjaxResult addTopic(String productId,TopicSave topicSave) {
+		Topic topic=new Topic();
+		topic.setProductId(productId);
+		topic.setOperAuth(topicSave.getOperAuth());
+		topic.setTopicUrl(topicSave.getPrefix()+topicSave.getSuffix());
+		topic.setTopicDesc(topicSave.getTopicDesc());
+		topic.setMessageNum(0);
+		topic.setCreator("admin");
+		topic.setUpdator("admin");
+		topic.setCreateTime(DateUtil.getCurDateTime());
+		topic.setUpdateTime(DateUtil.getCurDateTime());
+		topicMapper.insert(topic);
+		return AppUtil.returnObj(null);
+	}
+	
 	public AjaxResult addMessage(Topic topic) {
 	     topicMapper.insert(topic);
         return AppUtil.returnObj(null);
     }
+	
+	public String getProductKey(String productId){
+		ProductExample example=new ProductExample();
+		ProductExample.Criteria criteria=example.createCriteria();
+		criteria.andProductIdEqualTo(productId);
+		List<Product> products=productMapper.selectByExample(example);
+		Product product=products.get(0);
+		String  productKey=product.getProductKey();
+		return productKey;
+	}
 	
 }

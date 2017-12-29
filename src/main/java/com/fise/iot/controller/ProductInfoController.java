@@ -73,7 +73,7 @@ public class ProductInfoController {
 		return "product/product_add";
 	}
 
-	@ControllerLog("添加文件")
+	@ControllerLog("添加产品")
 	@RequestMapping("addProduct")
 	@ResponseBody
 	@Authority(opCode = "040104", opName = "添加产品")
@@ -82,9 +82,9 @@ public class ProductInfoController {
 	}
 	
 	@Authority(opCode = "040105", opName = "产品菜单界面")
-	@RequestMapping("productMenuPage/{id}")
-	public String productMenu(@PathVariable("id") int id, Map<String, Object> map) {
-		map.put("id", id);
+	@RequestMapping("productMenuPage/{productId}")
+	public String productMenu(@PathVariable("productId") String productId, Map<String, Object> map) {
+		map.put("productId", productId);
 		return "product/product_menu";
 	}
 
