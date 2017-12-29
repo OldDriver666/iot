@@ -19,7 +19,7 @@
     <div class="form-group">
         <label class="col-sm-3 control-label" for="productKey"><font color="red">*</font>productKey：</label>
         <div class="col-sm-8">
-            <input class="form-control" type="text" id="productKey" name="productKey" placeholder="请填写productKey" />
+            <input class="form-control" type="text" style="border:0px" id="productKey" name="productKey" value="${productKey}" readonly/><font color="red">(已生成唯一的productKey)</font>
             <div id="validation-productKey" class="validate-error help-block"></div>
         </div>
     </div>

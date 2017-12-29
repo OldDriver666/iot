@@ -14,6 +14,7 @@ import com.fise.iot.common.annotation.Authority;
 import com.fise.iot.common.annotation.ControllerLog;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
+import com.fise.iot.common.utils.StringUtil;
 import com.fise.iot.model.Product;
 import com.fise.iot.service.ProductInfoService;
 
@@ -70,6 +71,9 @@ public class ProductInfoController {
 	@Authority(opCode = "040104", opName = "添加产品页面")
 	@RequestMapping("addProductPage")
 	public String addProductPage(Map<String, Object> map) {
+		//生成唯一的productKey
+		String productKey=productService.createProductKey();
+		map.put("productKey", productKey);
 		return "product/product_add";
 	}
 
