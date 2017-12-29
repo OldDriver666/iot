@@ -80,7 +80,15 @@ public class MessageInfoService extends AbstratService<Topic>{
 		Topic topic=new Topic();
 		topic.setProductId(productId);
 		topic.setOperAuth(topicSave.getOperAuth());
-		topic.setTopicUrl(topicSave.getPrefix()+topicSave.getSuffix());
+		//校验topicUrl是否已经存在
+		String topicUrl=topicSave.getPrefix()+topicSave.getSuffix();
+		List<Topic> topics=topicMapper.selectAll();
+		for(Topic qureyTopic:topics) {
+			if(qureyTopic.getTopicUrl().equals(topicUrl)) {
+				return AppUtil.returnObj("该Topic已存在");
+				}
+		}
+		topic.setTopicUrl(topicUrl);
 		topic.setTopicDesc(topicSave.getTopicDesc());
 		topic.setMessageNum(0);
 		topic.setCreator("admin");
