@@ -67,8 +67,22 @@ public class MessageInfoService extends AbstratService<Topic>{
 	}
 	
 	@ServiceLog("更新消息")
-	public AjaxResult updateMessage(Topic topic) {
-		//topic.setUpdateTime(DateUtil.getCurDateTime());
+	public AjaxResult updateMessage(Topic topic,String topicUrl) {
+		Topic pic=topicMapper.selectByPrimaryKey(topic.getId());
+		
+		if(topicUrl.equals(pic.getTopicUrl())) {
+			topic.setUpdator("admin");
+			topic.setUpdateTime(DateUtil.getCurDateTime());
+			topicMapper.updateByPrimaryKeySelective(topic);
+			return AppUtil.returnObj(null);
+		}
+		
+		List<Topic> topics=topicMapper.selectAll();
+		for(Topic qureyTopic:topics) {
+			if(qureyTopic.getTopicUrl().equals(topicUrl)) {
+				return AppUtil.returnObj("该Topic已存在");
+				}
+		}
 		topic.setUpdator("admin");
 		topic.setUpdateTime(DateUtil.getCurDateTime());
 		topicMapper.updateByPrimaryKeySelective(topic);

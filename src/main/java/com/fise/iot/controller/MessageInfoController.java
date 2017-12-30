@@ -93,7 +93,7 @@ public class MessageInfoController {
 		String suffix=request.getParameter("suffix");
 		String topicUrl=prefix+suffix;
 		topic.setTopicUrl(topicUrl);
-		return messageService.updateMessage(topic);
+		return messageService.updateMessage(topic,topicUrl);
 	}
 	
 	@ControllerLog("删除消息")
