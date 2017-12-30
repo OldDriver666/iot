@@ -72,13 +72,16 @@ public class ProductInfoService extends AbstratService<Product> {
 	}
 	
 	public String createProductKey(){
-		String productKey=null;
+		String productKey="";
 	    List<Product> products=	productMapper.selectAll();
-	    for(Product product:products){
-	        productKey=StringUtil.makeCode(6, false);
-	    	if(!product.getProductKey().equals(productKey)){
-	    		break;
+	    while(true){
+	    	productKey=StringUtil.makeCode(6, false);
+	    	for(Product product:products){
+	    		if(product.getProductKey().equals(productKey)){
+	    			continue;
+	    		}
 	    	}
+	    	break;
 	    }
 		return productKey;
 	}
