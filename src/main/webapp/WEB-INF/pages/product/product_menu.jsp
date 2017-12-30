@@ -7,15 +7,15 @@
 	
 	<ul id="profile-tabs" class="nav nav-tabs">
         <li  >
-        <a class="list-group-item",
-				href="javascript:loadOperations('admin/product/productinfoPage')"><h5 class="list-group-item-heading">基本信息</h5></a> 
+        <a class="list-group-item", 
+				href="javascript:loadOperations('admin/product/productDetail/${productId}')"><h5 class="list-group-item-heading">基本信息</h5></a> 
         </li>
         <li  >
-        <a class="list-group-item",
+        <a class="list-group-item", 
 				href="javascript:loadOperations('admin/device/deviceinfoPage/${productId}')"><h5 class="list-group-item-heading">设备管理</h5></a> 
         </li>
         <li  >
-        <a class="list-group-item",
+        <a class="list-group-item", 
 				href="javascript:loadOperations('admin/message/messageinfoPage/${productId}')"><h5 class="list-group-item-heading">消息通信</h5></a>
         </li>
         <li  >
@@ -54,5 +54,9 @@
         		}
         	});
         }
+        
+        $(function(){
+        	loadOperations('admin/product/productDetail/${productId}');
+        });
 
     </script>

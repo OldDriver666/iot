@@ -1,5 +1,6 @@
 package com.fise.iot.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -90,6 +91,17 @@ public class ProductInfoController {
 	public String productMenu(@PathVariable("productId") String productId, Map<String, Object> map) {
 		map.put("productId", productId);
 		return "product/product_menu";
+	}
+	
+	@Authority(opCode = "040106", opName = "产品详细")
+	@RequestMapping("productDetail/{productId}")
+	public String productDetail(@PathVariable("productId") String productId, Map<String, Object> map) {
+		Product product = new Product();
+		product.setProductId(productId);
+		List<Product> list = productService.queryList(product);
+		product = list.get(0);
+		map.put("product", product);
+		return "product/product_detail";
 	}
 
 }
