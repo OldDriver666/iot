@@ -85,4 +85,19 @@ public class ProductInfoService extends AbstratService<Product> {
 	    }
 		return productKey;
 	}
+	
+	public String getProductIdByKey(String productKey) {
+		ProductExample example=new ProductExample();
+		ProductExample.Criteria criteria=example.createCriteria();
+		if(!StringUtil.isEmpty(productKey)) {
+			criteria.andProductKeyEqualTo(productKey);
+		}
+		List<Product> products =productMapper.selectByExample(example);
+		if(products.size()==0) {
+			return "";
+		}
+		Product product=products.get(0);
+		String productId=product.getProductId();
+		return productId;
+	}
 }

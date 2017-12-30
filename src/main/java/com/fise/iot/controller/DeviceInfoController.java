@@ -22,7 +22,9 @@ import com.fise.iot.common.annotation.Authority;
 import com.fise.iot.common.annotation.ControllerLog;
 import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
+import com.fise.iot.common.utils.AppUtil;
 import com.fise.iot.common.utils.DateUtil;
+import com.fise.iot.common.utils.StringUtil;
 import com.fise.iot.model.Device;
 import com.fise.iot.model.DeviceLog;
 import com.fise.iot.model.MQTTDto;
@@ -175,7 +177,7 @@ public class DeviceInfoController {
 	@Authority(opCode = "040205", opName = "发布消息")
 	@ResponseBody
 	@RequestMapping("devicePublish/{id}")
-	public String publishMsg(@PathVariable("id") int id,MQTTDto mqtt){
+	public AjaxResult publishMsg(@PathVariable("id") int id,MQTTDto mqtt){
 	    String topicUrl = mqtt.getTopicUrl();
 	    String content = mqtt.getContent();
 	    Integer qos = mqtt.getQos();
@@ -188,7 +190,12 @@ public class DeviceInfoController {
 		    messageHandler.handleMessage(message);  
 		    
 	    	DeviceLog deviceLog = new DeviceLog();
-	    	deviceLog.setProductId(str[1]);
+	    	String productKey=str[1];
+	        String productId=productService.getProductIdByKey(productKey);
+	        if(StringUtil.isEmpty(productId)) {
+	        	return AppUtil.returnObj("获取产品ID失败");
+	        }
+	    	deviceLog.setProductId(productId);
 	    	deviceLog.setDeviceName(str[2]);
 	    	deviceLog.setDetail(content);
 	    	deviceLog.setType(Constant.TOPIC_TYPE_UP);
@@ -196,14 +203,14 @@ public class DeviceInfoController {
 	    	deviceLogService.save(deviceLog);
 	    	
 		} catch (Exception e) {
-			return "failed";
+			return AppUtil.returnObj("操作失败");
 		}
 	    //发布消息的数量要累加
 	    Topic topic=  topicService.queryByID(id);
 	    topic.setMessageNum(topic.getMessageNum()+1);
 	    topic.setUpdateTime(DateUtil.getCurDateTime());
 	    topicService.update(topic);
-	    return "success";
+	    return AppUtil.returnObj(null);
 	}
 	
 }
