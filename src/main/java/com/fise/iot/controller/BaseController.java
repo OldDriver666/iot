@@ -21,7 +21,6 @@ import com.fise.iot.common.utils.IPUtil;
 
 /**
  * 基础Controller
- * @author CZH
  */
 @Controller
 public class BaseController {

@@ -29,39 +29,6 @@ public class LoginRequestInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private DataCache dataCache;
 	
-	@Autowired 
-	private DataCache dada;
-	
-	public boolean prePre(HttpServletRequest request,HttpServletResponse response,Object handler)throws Exception{
-		//启动支持@AutoWired注解
-		WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext()).getAutowireCapableBeanFactory().autowireBean(this);
-		//权限检验结果
-		boolean isOpera=true;
-		//登录信息验证结果
-		String loginResult=validateLogin(request, response);
-		
-		String requestType =request.getHeader("X-Requested-With");
-		String accept = request.getHeader("Accept");
-		//Ajax
-		if(requestType!=null&&"XMLHttpRequest".equals(requestType)&&accept.contains("application/json")){
-			if(StringUtils.isNotEmpty(loginResult)){
-				throw new AjaxLoginException(401,loginResult);
-			}
-			isOpera= validateOperation(request);
-			if(!isOpera){
-				throw new AjaxLoginException(402,"您没此操作权限");
-			}
-		}
-		if(StringUtils.isNotEmpty(loginResult)){
-			throw new AjaxLoginException(401,loginResult);
-		}
-		isOpera=validateOperation(request);
-		if(!isOpera){
-			throw new AjaxLoginException(402,"你没此操作权限");
-		}
-		return super.preHandle(request, response, handler); 
-	}
-	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		//启动支持@Autowired注解

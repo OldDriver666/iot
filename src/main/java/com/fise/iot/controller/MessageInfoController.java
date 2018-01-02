@@ -1,6 +1,5 @@
 package com.fise.iot.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,10 +23,8 @@ import com.fise.iot.common.pojo.AjaxResult;
 import com.fise.iot.common.pojo.PageAjax;
 import com.fise.iot.model.DeviceLog;
 import com.fise.iot.model.MQTTDto;
-import com.fise.iot.model.Product;
 import com.fise.iot.model.Topic;
 import com.fise.iot.model.TopicSave;
-import com.fise.iot.service.ProductInfoService;
 import com.fise.iot.service.DeviceLogService;
 import com.fise.iot.service.MessageInfoService;
 
@@ -49,9 +46,6 @@ public class MessageInfoController {
 	
 	@Autowired
 	private MessageInfoService messageService;
-	
-	@Autowired
-    private ProductInfoService baseInfoService;
 	
 	@Authority(opCode = "0403", opName = "查询消息通信界面")
 	@RequestMapping("messageinfoPage/{productId}")

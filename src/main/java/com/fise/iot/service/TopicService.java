@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fise.iot.mapper.TopicMapper;
-import com.fise.iot.model.MessagePublish;
 import com.fise.iot.model.Topic;
 import com.fise.iot.model.TopicExample;
 
@@ -18,13 +17,6 @@ public class TopicService extends AbstratService<Topic> {
 	
 	public Topic queryTopicByID(int id) {
 		return topicMapper.selectByPrimaryKey(id);
-	}
-	
-	public List<Topic> queryTopicByDeviceId(String deviceId){
-		TopicExample  example =new TopicExample();
-		TopicExample.Criteria criteria=example.createCriteria();
-		//criteria.andDeviceIdEqualTo(deviceId);
-		return topicMapper.selectByExample(example);
 	}
 	
 	public List<Topic> queryTopicPage(String productId,String deviceName){
@@ -46,9 +38,4 @@ public class TopicService extends AbstratService<Topic> {
 		}
 		return topicList;
 	}
-	
-	public void publishMessage(MessagePublish message){
-		
-		
-		}
 }
