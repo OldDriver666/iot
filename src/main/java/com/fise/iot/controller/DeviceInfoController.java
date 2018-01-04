@@ -3,8 +3,6 @@ package com.fise.iot.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +26,6 @@ import com.fise.iot.common.utils.StringUtil;
 import com.fise.iot.model.Device;
 import com.fise.iot.model.DeviceLog;
 import com.fise.iot.model.MQTTDto;
-import com.fise.iot.model.MessagePublish;
-import com.fise.iot.model.Product;
 import com.fise.iot.model.Topic;
 import com.fise.iot.service.DeviceInfoService;
 import com.fise.iot.service.DeviceLogService;
@@ -115,7 +111,6 @@ public class DeviceInfoController {
 	@Authority(opCode = "040202", opName = "Topic列表页面")
 	public PageAjax<Topic> topicResultPage(@PathVariable("productId") String productId,
 			                               @PathVariable("deviceName") String deviceName) {
-         System.out.println(productId);
 //		// 根据id查出该设备的信息
 //		Device device = deviceService.queryDeviceByID(id);
 //		String deviceName = device.getDeviceName();
@@ -155,10 +150,10 @@ public class DeviceInfoController {
 	@Authority(opCode = "040205", opName = "发布消息页面")
 	@RequestMapping("devicePublishPage/{id}")
 	public String devicePublishPage(@PathVariable("id") int id,String topicUrl, Map<String, Object> map) {
-//		//根据topicId查出对应得topicUrl
+//		根据topicId查出对应得topicUrl
 //		Topic topic=topicService.queryTopicByID(id);
 //		String topicUrl=topic.getTopicUrl();
-////		String topicUrl=request.getParameter("topicUrl");
+//		String topicUrl=request.getParameter("topicUrl");
 		map.put("topicUrl", topicUrl);
 		return "device/device_publish";
 	}
@@ -182,7 +177,6 @@ public class DeviceInfoController {
 	    String content = mqtt.getContent();
 	    Integer qos = mqtt.getQos();
 	    String [] str= topicUrl.split("/");
-	    System.out.println(id);
 	    try {
 		    messageHandler.setDefaultTopic(publish + topicUrl);
 		    messageHandler.setDefaultQos(qos);
