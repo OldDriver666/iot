@@ -10,7 +10,7 @@ import org.eclipse.paho.client.mqttv3.MqttTopic;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class Server {
-	public static final String HOST = "tcp://192.168.252.250:1883";
+	public static final String HOST = "tcp://10.252.252.250:1883";
 
 	public static final String TOPIC = "tokudu/yzq124";
 	private static final String clientid = "server";
