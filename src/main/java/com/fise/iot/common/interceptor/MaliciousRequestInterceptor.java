@@ -44,24 +44,24 @@ public class MaliciousRequestInterceptor extends HandlerInterceptorAdapter {
 		Long preRequestTime = dataCache.getLong(requestIp + Constant.PRE_REQUEST_TIME);
 		//当前时间
 		long nowtime = System.currentTimeMillis();
-//		if (preRequestPath != null && preRequestTime != null) { // 过滤频繁操作
-//			if ((url.equals(preRequestPath) || allRequest) && nowtime - preRequestTime < minRequestIntervalTime) {
-//				//非法请求次数
-//				Integer malRequestTimes = dataCache.getInteger(requestIp + Constant.MAL_REQUEST_TIMES);
-//				if (malRequestTimes == null) {
-//					malRequestTimes = 1;
-//				} else {
-//					malRequestTimes ++;
-//				}
-//				dataCache.setValue(requestIp + Constant.MAL_REQUEST_TIMES, malRequestTimes);
-//				if (malRequestTimes > maxMaliciousTimes) {
-//					logger.warn("频繁请求 : {}", url);
-//					throw new MalciousException(207, "您的请求过于频繁");
-//				}
-//			} else {
-//				dataCache.setValue(requestIp + Constant.MAL_REQUEST_TIMES, 0);
-//			}
-//		}
+		if (preRequestPath != null && preRequestTime != null) { // 过滤频繁操作
+			if ((url.equals(preRequestPath) || allRequest) && nowtime - preRequestTime < minRequestIntervalTime) {
+				//非法请求次数
+				Integer malRequestTimes = dataCache.getInteger(requestIp + Constant.MAL_REQUEST_TIMES);
+				if (malRequestTimes == null) {
+					malRequestTimes = 1;
+				} else {
+					malRequestTimes ++;
+				}
+				dataCache.setValue(requestIp + Constant.MAL_REQUEST_TIMES, malRequestTimes);
+				if (malRequestTimes > maxMaliciousTimes) {
+					logger.warn("频繁请求 : {}", url);
+					throw new MalciousException(207, "您的请求过于频繁");
+				}
+			} else {
+				dataCache.setValue(requestIp + Constant.MAL_REQUEST_TIMES, 0);
+			}
+		}
 		dataCache.setValue(requestIp + Constant.PRE_REQUEST_PATH, url);
 		dataCache.setValue(requestIp + Constant.PRE_REQUEST_TIME, nowtime);
 		return super.preHandle(request, response, handler);
