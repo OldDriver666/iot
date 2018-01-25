@@ -11,6 +11,7 @@ import com.fise.iot.common.pojo.PageAjax;
 import com.fise.iot.common.utils.AppUtil;
 import com.fise.iot.common.utils.DateUtil;
 import com.fise.iot.common.utils.StringUtil;
+import com.fise.iot.common.utils.UserUtil;
 import com.fise.iot.mapper.ProductMapper;
 import com.fise.iot.model.Product;
 import com.fise.iot.model.ProductExample;
@@ -29,6 +30,7 @@ public class ProductInfoService extends AbstratService<Product> {
 		ProductExample example=new ProductExample();
 		ProductExample.Criteria criteria=example.createCriteria();
 		criteria.andStatusNotEqualTo(2);
+		criteria.andCreatorEqualTo(UserUtil.getCurrentUserName());
 		if(!StringUtil.isEmpty(product.getProductName())){
 			criteria.andProductNameLike("%" + product.getProductName()+ "%");
 		}
@@ -45,6 +47,7 @@ public class ProductInfoService extends AbstratService<Product> {
 
 	@ServiceLog("更新产品")
 	public AjaxResult updateProduct(Product product) {
+		product.setUpdator(UserUtil.getCurrentUserName());
 		product.setUpdateTime(DateUtil.getCurDateTime());
 		productMapper.updateByPrimaryKeySelective(product);
 		return AppUtil.returnObj(null);
@@ -63,8 +66,9 @@ public class ProductInfoService extends AbstratService<Product> {
 	@ServiceLog("新增产品")
 	public AjaxResult addProduct(Product product) {
 		//product.setAddtime(DateUtil.getCurDateTime());
-		product.setCreator("admin");
-		product.setUpdator("admin");
+		
+		product.setCreator(UserUtil.getCurrentUserName());
+		product.setUpdator(UserUtil.getCurrentUserName());
 		product.setCreateTime(DateUtil.getCurDateTime());
 		product.setUpdateTime(DateUtil.getCurDateTime());
 		productMapper.insert(product);
