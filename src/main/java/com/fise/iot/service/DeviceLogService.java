@@ -60,6 +60,7 @@ public class DeviceLogService extends AbstratService<DeviceLog> {
 			criteria.andCreateTimeBetween(oneMonth, currentTime);
 		}
 		}
+		example.setOrderByClause("create_time desc");
 		List<DeviceLog> list = logMapper.selectByExample(example);
 		return AppUtil.returnPage(list);
 	}
