@@ -340,7 +340,12 @@
                             <span class="z-switch" id="remenber"></span>
                             <span>记住登录</span>
                         </label>
+                        
                     </form>
+                    <br/>
+                    <a class="input-group" style="color:#fff; text-decoration: none; border-bottom: 1px solid; display:inline-block; margin-left:20px;" target="_blank" href="${ctx}/register/index.html">
+						注册账号
+					</a>
                 </div>
             </div>
         </div>
