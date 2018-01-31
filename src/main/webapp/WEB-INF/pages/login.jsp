@@ -343,7 +343,7 @@
                         
                     </form>
                     <br/>
-                    <a class="input-group" style="color:#fff; text-decoration: none; border-bottom: 1px solid; display:inline-block; margin-left:20px;" target="_blank" href="${ctx}/register/index.html">
+                    <a class="input-group" style="color:#fff; text-decoration: none; border-bottom: 1px solid; display:inline-block; margin-left:20px;" target="_blank" href="${ctx}/register/register.jsp">
 						注册账号
 					</a>
                 </div>
