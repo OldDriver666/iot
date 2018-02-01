@@ -64,15 +64,6 @@ $(document).ready(function(){
 		  $("#password").val(password);
 		  $("#confirm_password").val(confirm_password);
 		  
-		  $.ajax({
-	            type: $("form").attr('method'),
-	            url: $("form").attr('action'),
-	            data: $("form").serialize(),
-	            dataType:"json",
-	            success: function (data) {
-	                alert('ok');
-	            }
-	        });
 	  });
 	});
 </script>

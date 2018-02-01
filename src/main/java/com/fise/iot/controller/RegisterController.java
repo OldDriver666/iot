@@ -41,11 +41,11 @@ public class RegisterController extends BaseController {
 
 	@ControllerLog("注册用户")
 	@RequestMapping("register")
-	@ResponseBody
-	public AjaxResult add(AuthUser user) {
+	public String add(AuthUser user) {
 		user.setUseable(1);
 		user.setRoleid(26);
-		return userService.saveUser(user);
+		userService.saveUser(user);
+		return "common/success";
 	}
 
 
