@@ -18,7 +18,7 @@
 		<p>用户注册</p>
 	</div>
 	
-	<form action="http://192.168.2.49:8080/iot/register/register" method="post" >
+	<form action="${ctx}/register/register" method="post" >
 		<div>
 			<input type="text" id="username" name="username" class="username" placeholder="您的用户名" autocomplete="off"/>
 		</div>

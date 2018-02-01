@@ -14,7 +14,7 @@
 <body bgcolor="green">
 
 	<div align="center">
-		<h1>注册成功</h1>
+		<h2>注册成功</h2>
 	</div>
 </body>
 </html>
