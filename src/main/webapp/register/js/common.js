@@ -15,7 +15,7 @@ $(document).ready(function(){
 			},
 			password:{
 				required:true,
-				minlength:3, 
+				minlength:6, 
 				maxlength:32,
 			},
 		},
@@ -49,7 +49,7 @@ $(document).ready(function(){
 			},
 			password:{
 				required:true,
-				minlength:3, 
+				minlength:6, 
 				maxlength:32,
 			},
 			email:{
@@ -58,7 +58,7 @@ $(document).ready(function(){
 			},
 			confirm_password:{
 				required:true,
-				minlength:3,
+				minlength:6,
 				equalTo:'.password'
 			},
 			phone_number:{

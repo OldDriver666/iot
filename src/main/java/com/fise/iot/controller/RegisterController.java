@@ -43,6 +43,8 @@ public class RegisterController extends BaseController {
 	@RequestMapping("register")
 	@ResponseBody
 	public AjaxResult add(AuthUser user) {
+		user.setUseable(1);
+		user.setRoleid(26);
 		return userService.saveUser(user);
 	}
 
