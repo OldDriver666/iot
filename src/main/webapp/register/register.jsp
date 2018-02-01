@@ -59,7 +59,6 @@ $(document).ready(function(){
 		  if(password.length <= 20){
 			  password = hex_md5(password);
 			  confirm_password = hex_md5(confirm_password);
-			  
 		  }
 		  $("#password").val(password);
 		  $("#confirm_password").val(confirm_password);
