@@ -29,4 +29,8 @@ public class Constant {
 	public static final Integer TOPIC_TYPE_UP = 1;
 	/**消息下行*/
 	public static final Integer TOPIC_TYPE_DOWN = 2;
+	/**用户可用*/
+	public static final Integer USER_ABLE = 1;
+	/**用户通用角色ID*/
+	public static final Integer USER_ROLE = 26;
 }

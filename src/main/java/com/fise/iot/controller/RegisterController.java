@@ -1,24 +1,13 @@
 package com.fise.iot.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fise.iot.common.annotation.Authority;
+import com.fise.iot.common.Constant;
 import com.fise.iot.common.annotation.ControllerLog;
-import com.fise.iot.common.pojo.AjaxResult;
-import com.fise.iot.common.pojo.PageAjax;
-import com.fise.iot.model.AuthRole;
 import com.fise.iot.model.AuthUser;
-import com.fise.iot.service.RoleService;
 import com.fise.iot.service.UserService;
 
 @Controller
@@ -42,8 +31,8 @@ public class RegisterController extends BaseController {
 	@ControllerLog("注册用户")
 	@RequestMapping("register")
 	public String add(AuthUser user) {
-		user.setUseable(1);
-		user.setRoleid(26);
+		user.setUseable(Constant.USER_ABLE);
+		user.setRoleid(Constant.USER_ROLE);
 		userService.saveUser(user);
 		return "common/success";
 	}
