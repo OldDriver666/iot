@@ -11,6 +11,7 @@ import com.fise.iot.common.pojo.PageAjax;
 import com.fise.iot.common.utils.AppUtil;
 import com.fise.iot.common.utils.DateUtil;
 import com.fise.iot.common.utils.StringUtil;
+import com.fise.iot.common.utils.UserUtil;
 import com.fise.iot.mapper.DeviceMapper;
 import com.fise.iot.model.Device;
 import com.fise.iot.model.DeviceExample;
@@ -29,6 +30,7 @@ public class DeviceInfoService extends AbstratService<Device>{
 		DeviceExample example=new DeviceExample();
 		DeviceExample.Criteria criteria=example.createCriteria();
 		criteria.andStatusNotEqualTo(2);
+		criteria.andCreatorEqualTo(UserUtil.getCurrentUserName());
 		if(!StringUtil.isEmpty(productId)){
 			criteria.andProductIdEqualTo(productId);
 		}
@@ -67,8 +69,8 @@ public class DeviceInfoService extends AbstratService<Device>{
 	@ServiceLog("新增设备")
 	public AjaxResult addDevice(Device device) {
 		//product.setAddtime(DateUtil.getCurDateTime());
-		device.setCreator("admin");
-		device.setUpdator("admin");
+		device.setCreator(UserUtil.getCurrentUserName());
+		device.setUpdator(UserUtil.getCurrentUserName());
 		device.setCreateTime(DateUtil.getCurDateTime());
 		device.setUpdateTime(DateUtil.getCurDateTime());
 		device.setLastTime(DateUtil.getCurDateTime());
