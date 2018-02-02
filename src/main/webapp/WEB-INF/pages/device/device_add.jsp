@@ -16,14 +16,6 @@
         </div>
     </div>
     
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="productId"><font color="red">*</font>产品ID：</label>
-        <div class="col-sm-8">
-            <input class="form-control" type="text" id="productId" name="productId" placeholder="请填写产品ID" />
-            <div id="validation-productId" class="validate-error help-block"></div>
-        </div>
-    </div>
-    
    <div class="form-group">
         <label class="col-sm-3 control-label" for="deviceKey"><font color="red">*</font>设备Key：</label>
         <div class="col-sm-8">
@@ -50,6 +42,7 @@
 	 submit = function(){
 		frmValidate();
 	    var data = $("#submitForm").serialize();
+	    data = data + "&productId=${productId}";
 		ajaxRequest("admin/device/addDevice", data);
 	}
 </script>

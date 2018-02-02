@@ -131,8 +131,9 @@ public class DeviceInfoController {
 	}
 
 	@Authority(opCode = "040204", opName = "添加设备页面")
-	@RequestMapping("addDevicePage")
-	public String addDevicePage(Map<String, Object> map) {
+	@RequestMapping("addDevicePage/{productId}")
+	public String addDevicePage(@PathVariable("productId") String productId, Map<String, Object> map) {
+		map.put("productId", productId);
 		return "device/device_add";
 	}
 
