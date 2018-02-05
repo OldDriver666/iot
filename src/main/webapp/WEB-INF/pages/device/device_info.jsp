@@ -17,9 +17,7 @@
     <div class="col-md-3" style="text-align: left;padding-bottom: unset">
         <button id="addBtn" class="btn btn-labeled btn-primary" onclick="javascript:showModal('添加设备', 'admin/device/addDevicePage/${productId}');"><span class="btn-label icon fa fa-plus"></span>添加设备</button>
     </div>
-     <div class="col-md-3" style="text-align: left;padding-bottom: unset">
-        <button id="backBtn" class="btn btn-labeled btn-primary" onclick="javascript:goPage('admin/product/productinfoPage');" style="float: right;">返回产品页</button>
-     </div>
+     
   </div>
 </div>
 <div class="openAppGrid">

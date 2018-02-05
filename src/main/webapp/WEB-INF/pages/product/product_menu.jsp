@@ -24,9 +24,11 @@
         </li>
 
     </ul>
-	
+   <button id="backBtn" class="btn btn-labeled btn-primary" onclick="javascript:goPage('admin/product/productinfoPage');" style="float: right;">返回产品页</button>
 	
 </div>
+
+
 <br></br>
 <div >
 	<div id="pageShow">
