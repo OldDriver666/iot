@@ -102,5 +102,12 @@ public class ProductInfoController {
 		map.put("product", product);
 		return "product/product_detail";
 	}
+	
+	@Authority(opCode = "040107", opName = "产品设备界面")
+	@RequestMapping("productDevicePage/{productId}")
+	public String productDevice(@PathVariable("productId") String productId, Map<String, Object> map) {
+		map.put("productId", productId);
+		return "product/product_device";
+	}
 
 }
