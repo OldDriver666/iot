@@ -86,9 +86,12 @@ public class ProductInfoController {
 	}
 	
 	@Authority(opCode = "040105", opName = "产品菜单界面")
-	@RequestMapping("productMenuPage/{productId}")
-	public String productMenu(@PathVariable("productId") String productId, Map<String, Object> map) {
+	@RequestMapping("productMenuPage/{productId}/{pageName}")
+	public String productMenu(@PathVariable("productId") String productId, 
+							  @PathVariable("pageName") String pageName,
+							  Map<String, Object> map) {
 		map.put("productId", productId);
+		map.put("pageName", pageName);
 		return "product/product_menu";
 	}
 	
@@ -101,13 +104,6 @@ public class ProductInfoController {
 		product = list.get(0);
 		map.put("product", product);
 		return "product/product_detail";
-	}
-	
-	@Authority(opCode = "040107", opName = "产品设备界面")
-	@RequestMapping("productDevicePage/{productId}")
-	public String productDevice(@PathVariable("productId") String productId, Map<String, Object> map) {
-		map.put("productId", productId);
-		return "product/product_device";
 	}
 
 }

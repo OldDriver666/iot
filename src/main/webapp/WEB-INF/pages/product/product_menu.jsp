@@ -58,7 +58,13 @@
         }
         
         $(function(){
-        	loadOperations('admin/product/productDetail/${productId}');
+        	
+        	if('${pageName}' == 'product'){
+        		loadOperations('admin/product/productDetail/${productId}');
+        	};
+        	if('${pageName}' == 'device'){
+        		loadOperations('admin/device/deviceinfoPage/${productId}');
+        	};
         });
 
     </script>
