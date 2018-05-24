@@ -1,5 +1,7 @@
 package com.fise.iot.common.conf;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -19,8 +21,13 @@ import org.springframework.messaging.MessagingException;
 
 import com.fise.iot.common.Constant;
 import com.fise.iot.common.utils.DateUtil;
+import com.fise.iot.common.utils.StringUtil;
+import com.fise.iot.mapper.ProductMapper;
 import com.fise.iot.model.DeviceLog;
+import com.fise.iot.model.Product;
+import com.fise.iot.model.ProductExample;
 import com.fise.iot.service.DeviceLogService;
+import com.fise.iot.service.ProductInfoService;
 
 /**
  * MQTT配置
@@ -53,6 +60,9 @@ public class MQTTConfig {
 	
 	@Autowired
 	DeviceLogService deviceLogService;
+	
+	@Autowired
+	private ProductInfoService productService;
 
 	@Bean
 	public MqttPahoClientFactory mqttClientFactory() {
@@ -112,7 +122,8 @@ public class MQTTConfig {
 					String[] topics = topic.replace(subscribe.replace("#", ""),"").split("/");
 					DeviceLog deviceLog = new DeviceLog();
 					if (topics.length > 1) {
-						deviceLog.setProductId(topics[0]);
+						String productId = productService.getProductIdByKey(topics[0]);
+						deviceLog.setProductId(StringUtil.isNotEmpty(productId)?productId:topics[0]);
 						deviceLog.setDeviceName(topics[1]);
 						deviceLog.setDetail(message.getPayload().toString());
 						deviceLog.setType(Constant.TOPIC_TYPE_DOWN);

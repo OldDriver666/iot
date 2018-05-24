@@ -24,19 +24,10 @@ public class DeviceLogService extends AbstratService<DeviceLog> {
 	@Autowired
 	private DeviceLogMapper logMapper;
 	
-	@Autowired
-	private ProductMapper productMapper;
-
 	public PageAjax<DeviceLog> queryDeviceLogPage(PageAjax<DeviceLog> page, DeviceLog deviceLog, String time) {
 		PageMethod.startPage(page.getPageNo(), page.getPageSize());
 		DeviceLogExample example = new DeviceLogExample();
 		DeviceLogExample.Criteria criteria = example.createCriteria();
-		
-		ProductExample example1=new ProductExample();
-		ProductExample.Criteria criteria1=example1.createCriteria();
-		criteria1.andProductIdEqualTo(deviceLog.getProductId());
-		List<Product> listProduct = productMapper.selectByExample(example1);
-		deviceLog.setProductId(listProduct.get(0).getProductKey());
 		
 		if(!StringUtil.isEmpty(deviceLog.getProductId())){
 			criteria.andProductIdEqualTo(deviceLog.getProductId());
