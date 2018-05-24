@@ -18,6 +18,11 @@ public class DeviceLog implements Serializable {
      * 产品Id
      */
     private String productId;
+    
+    /**
+     * 产品key
+     */
+    private String productKey;
 
     /**
      * 消息Id
@@ -59,15 +64,15 @@ public class DeviceLog implements Serializable {
         this.id = id;
     }
 
-    public String getProductId() {
-        return productId;
-    }
+    public String getProductKey() {
+		return productKey;
+	}
 
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
+	public void setProductKey(String productKey) {
+		this.productKey = productKey;
+	}
 
-    public String getMessageId() {
+	public String getMessageId() {
         return messageId;
     }
 
@@ -115,9 +120,17 @@ public class DeviceLog implements Serializable {
 		this.createTime = createTime;
 	}
 
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+
 	@Override
 	public String toString() {
-		return "DeviceLog [id=" + id + ", productId=" + productId + ", messageId=" + messageId + ", deviceName="
+		return "DeviceLog [id=" + id + ", productId=" + productKey + ", messageId=" + messageId + ", deviceName="
 				+ deviceName + ", type=" + type + ", detail=" + detail + ", statusDesc=" + statusDesc + ", createTime="
 				+ createTime + "]";
 	}

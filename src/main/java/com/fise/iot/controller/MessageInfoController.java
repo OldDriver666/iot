@@ -132,7 +132,7 @@ public class MessageInfoController {
 		    messageHandler.handleMessage(message);  
 		    
 	    	DeviceLog deviceLog = new DeviceLog();
-	    	deviceLog.setProductId(mqtt.getProductId());
+	    	deviceLog.setProductKey(mqtt.getProductKey());
 	    	deviceLog.setDeviceName(mqtt.getDeviceName());
 	    	deviceLog.setDetail(content);
 	    	deviceLog.setType(Constant.TOPIC_TYPE_UP);

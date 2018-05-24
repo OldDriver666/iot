@@ -19,6 +19,11 @@ public class MQTTDto implements Serializable {
      * 产品id
      */
     private String productId;
+    
+    /**
+     * 产品key
+     */
+    private String productKey;
 
     /**
      * topic类
@@ -166,6 +171,14 @@ public class MQTTDto implements Serializable {
 
 	public void setQos(Integer qos) {
 		this.qos = qos;
+	}
+
+	public String getProductKey() {
+		return productKey;
+	}
+
+	public void setProductKey(String productKey) {
+		this.productKey = productKey;
 	}
 
 	@Override

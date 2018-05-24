@@ -185,12 +185,7 @@ public class DeviceInfoController {
 		    messageHandler.handleMessage(message);  
 		    
 	    	DeviceLog deviceLog = new DeviceLog();
-	    	String productKey=str[1];
-	        String productId=productService.getProductIdByKey(productKey);
-	        if(StringUtil.isEmpty(productId)) {
-	        	return AppUtil.returnObj("获取产品ID失败");
-	        }
-	    	deviceLog.setProductId(productId);
+	    	deviceLog.setProductKey(str[1]);
 	    	deviceLog.setDeviceName(str[2]);
 	    	deviceLog.setDetail(content);
 	    	deviceLog.setType(Constant.TOPIC_TYPE_UP);

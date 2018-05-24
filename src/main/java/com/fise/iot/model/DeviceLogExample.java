@@ -198,6 +198,11 @@ public class DeviceLogExample {
             addCriterion("product_id =", value, "productId");
             return (Criteria) this;
         }
+        
+        public Criteria andProductKeyEqualTo(String value) {
+        	addCriterion("product_key =", value, "productKey");
+        	return (Criteria) this;
+        }
 
         public Criteria andProductIdNotEqualTo(String value) {
             addCriterion("product_id <>", value, "productId");

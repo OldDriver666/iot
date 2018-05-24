@@ -3,7 +3,7 @@
 <mapper namespace="com.fise.iot.mapper.DeviceLogMapper">
   <resultMap id="BaseResultMap" type="com.fise.iot.model.DeviceLog">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="product_key" jdbcType="VARCHAR" property="productKey" />
     <result column="message_id" jdbcType="VARCHAR" property="messageId" />
     <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
     <result column="type" jdbcType="INTEGER" property="type" />
