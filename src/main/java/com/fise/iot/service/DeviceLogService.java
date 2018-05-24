@@ -11,8 +11,11 @@ import com.fise.iot.common.utils.AppUtil;
 import com.fise.iot.common.utils.DateUtil;
 import com.fise.iot.common.utils.StringUtil;
 import com.fise.iot.mapper.DeviceLogMapper;
+import com.fise.iot.mapper.ProductMapper;
 import com.fise.iot.model.DeviceLog;
 import com.fise.iot.model.DeviceLogExample;
+import com.fise.iot.model.Product;
+import com.fise.iot.model.ProductExample;
 import com.github.pagehelper.page.PageMethod;
 
 @Service
@@ -20,11 +23,21 @@ public class DeviceLogService extends AbstratService<DeviceLog> {
 
 	@Autowired
 	private DeviceLogMapper logMapper;
+	
+	@Autowired
+	private ProductMapper productMapper;
 
 	public PageAjax<DeviceLog> queryDeviceLogPage(PageAjax<DeviceLog> page, DeviceLog deviceLog, String time) {
 		PageMethod.startPage(page.getPageNo(), page.getPageSize());
 		DeviceLogExample example = new DeviceLogExample();
 		DeviceLogExample.Criteria criteria = example.createCriteria();
+		
+		ProductExample example1=new ProductExample();
+		ProductExample.Criteria criteria1=example1.createCriteria();
+		criteria1.andProductIdEqualTo(deviceLog.getProductId());
+		List<Product> listProduct = productMapper.selectByExample(example1);
+		deviceLog.setProductId(listProduct.get(0).getProductKey());
+		
 		if(!StringUtil.isEmpty(deviceLog.getProductId())){
 			criteria.andProductIdEqualTo(deviceLog.getProductId());
 		}

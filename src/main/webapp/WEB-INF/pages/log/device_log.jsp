@@ -38,7 +38,7 @@
     $(function (){
         $("#openAppGrid").sgrid({
             columns:[
-                {field:"productId",text:"产品ID"},
+                {field:"productId",text:"产品KEY"},
                 {field:"deviceName", text:"设备名称"},
                 {field:"messageId", text:"messageId"},
                 {field:"type", text:"消息类型",formatter:function(index, content, data){
