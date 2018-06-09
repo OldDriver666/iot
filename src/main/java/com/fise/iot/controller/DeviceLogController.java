@@ -38,9 +38,9 @@ public class DeviceLogController {
 	@RequestMapping("queryDeviceLogPage/{productId}")
 	@ResponseBody
 	@Authority(opCode = "0405", opName = "查询设备日志")
-	public PageAjax<DeviceLog> queryDeviceLogPage(PageAjax<DeviceLog> page,@PathVariable("productId") String productId, DeviceLog deviceLog,String time) {
+	public PageAjax<DeviceLog> queryDeviceLogPage(PageAjax<DeviceLog> page,@PathVariable("productId") String productId, DeviceLog deviceLog) {
 		//time  0-一天内，1-一个星期内，2-一个月内
 		
-		return logService.queryDeviceLogPage(page,productId, deviceLog,time);
+		return logService.queryDeviceLogPage(page,productId, deviceLog);
 	}
 }

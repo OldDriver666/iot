@@ -28,7 +28,7 @@ public class DeviceLogService extends AbstratService<DeviceLog> {
 	@Autowired
 	private ProductMapper productMapper;
 	
-	public PageAjax<DeviceLog> queryDeviceLogPage(PageAjax<DeviceLog> page, String productId, DeviceLog deviceLog, String time) {
+	public PageAjax<DeviceLog> queryDeviceLogPage(PageAjax<DeviceLog> page, String productId, DeviceLog deviceLog) {
 		
 		ProductExample example1=new ProductExample();
 		ProductExample.Criteria criteria1=example1.createCriteria();
