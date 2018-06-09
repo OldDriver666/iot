@@ -11,4 +11,13 @@
     <result column="status_desc" jdbcType="VARCHAR" property="statusDesc" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
+  
+  	<select id="queryList" resultMap="BaseResultMap">
+		SELECT * from device_log where 1=1
+		<if test="null != deviceLog.deviceName"> and locate(#{deviceLog.deviceName}, device_name) > 0</if>
+		<if test="null != deviceLog.detail"> and locate(#{deviceLog.detail}, detail) > 0</if>
+		<if test="null != deviceLog.productKey"> and product_key = #{deviceLog.productKey}</if>
+		order by create_time desc
+	</select>
+  
 </mapper>

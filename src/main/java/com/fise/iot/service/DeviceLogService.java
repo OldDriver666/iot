@@ -12,6 +12,7 @@ import com.fise.iot.common.utils.DateUtil;
 import com.fise.iot.common.utils.StringUtil;
 import com.fise.iot.mapper.DeviceLogMapper;
 import com.fise.iot.mapper.ProductMapper;
+import com.fise.iot.model.AuthUser;
 import com.fise.iot.model.DeviceLog;
 import com.fise.iot.model.DeviceLogExample;
 import com.fise.iot.model.Product;
@@ -28,52 +29,15 @@ public class DeviceLogService extends AbstratService<DeviceLog> {
 	private ProductMapper productMapper;
 	
 	public PageAjax<DeviceLog> queryDeviceLogPage(PageAjax<DeviceLog> page, String productId, DeviceLog deviceLog, String time) {
-		PageMethod.startPage(page.getPageNo(), page.getPageSize());
-		DeviceLogExample example = new DeviceLogExample();
-		DeviceLogExample.Criteria criteria = example.createCriteria();
 		
 		ProductExample example1=new ProductExample();
 		ProductExample.Criteria criteria1=example1.createCriteria();
 		criteria1.andProductIdEqualTo(productId);
 		List<Product> listProduct = productMapper.selectByExample(example1);
+		deviceLog.setProductKey(listProduct.get(0).getProductKey());
 		
-		if(!StringUtil.isEmpty(listProduct.get(0).getProductKey())){
-			criteria.andProductKeyEqualTo(listProduct.get(0).getProductKey());
-		}
-		if (!StringUtil.isEmpty(deviceLog.getDeviceName())) {
-			criteria.andDeviceNameLike("%" + deviceLog.getDeviceName() + "%");
-		}
-		if (!StringUtil.isEmpty(deviceLog.getMessageId())) {
-			criteria.andMessageIdEqualTo(deviceLog.getMessageId());
-		}
-		if (!StringUtil.isEmpty(deviceLog.getMessageId())) {
-			criteria.andMessageIdEqualTo(deviceLog.getMessageId());
-		}
-
-		if (deviceLog.getType() != null) {
-			criteria.andTypeEqualTo(deviceLog.getType());
-		}
-		String currentTime = DateUtil.getCurDateTime();
-		if(!StringUtil.isEmpty(time)){
-		if (time.equals("0")) {
-			// 前一天的当前时间
-			String oneDay = DateUtil.getBeforeDate(Calendar.DAY_OF_MONTH, -1);
-			criteria.andCreateTimeBetween(oneDay, currentTime);
-		}
-
-		if (time.equals("1")) {
-			//一个星期前的当前时间
-		    String oneWeek = DateUtil.getBeforeDate(Calendar.DAY_OF_MONTH, -7);
-			criteria.andCreateTimeBetween(oneWeek, currentTime);
-		}
-		if (time.equals("2")) {
-			//一个月前的当前时间
-		    String oneMonth = DateUtil.getBeforeDate(Calendar.MONTH, -1);
-			criteria.andCreateTimeBetween(oneMonth, currentTime);
-		}
-		}
-		example.setOrderByClause("create_time desc");
-		List<DeviceLog> list = logMapper.selectByExample(example);
+		PageMethod.startPage(page.getPageNo(), page.getPageSize());
+		List<DeviceLog> list = logMapper.queryList(deviceLog);
 		return AppUtil.returnPage(list);
 	}
 

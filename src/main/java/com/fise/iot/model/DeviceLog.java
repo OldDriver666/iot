@@ -15,11 +15,6 @@ public class DeviceLog implements Serializable {
     private Integer id;
 
     /**
-     * 产品Id
-     */
-    private String productId;
-    
-    /**
      * 产品key
      */
     private String productKey;
@@ -118,14 +113,6 @@ public class DeviceLog implements Serializable {
 
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
-	}
-
-	public String getProductId() {
-		return productId;
-	}
-
-	public void setProductId(String productId) {
-		this.productId = productId;
 	}
 
 	@Override
