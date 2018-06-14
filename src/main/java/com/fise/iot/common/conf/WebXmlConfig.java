@@ -40,7 +40,7 @@ public class WebXmlConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new LoginRequestInterceptor()).addPathPatterns("/admin/**").excludePathPatterns("/admin/login")
-				.excludePathPatterns("/admin/logout");
+				.excludePathPatterns("/admin/logout").excludePathPatterns("/heartbeat/**");
 		registry.addInterceptor(new MaliciousRequestInterceptor()).addPathPatterns("/**");
 		super.addInterceptors(registry);
 	}
